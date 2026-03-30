@@ -884,7 +884,7 @@ body {
 
      <!-- JDS ConversationalAI_ChatInterface: AI message -->
      <div class="ai-msg-row">
-       <div class="ai-avatar"><video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Idle_state.mp4" autoplay loop muted playsinline></video></div>
+       <div class="ai-avatar"><video src="avatars/idle.mp4" autoplay loop muted playsinline></video></div>
        <div class="ai-msg-body">
          <p>Arre Ramesh bhai! Kaise ho? Mill mein aaj ka din kaisa gaya? 👋</p>
          <div class="ai-msg-time">9:41</div>
@@ -951,7 +951,7 @@ body {
    <!-- Voice Overlay — JDS states CDN video -->
    <div class="voice-overlay" id="voiceOverlay">
      <div class="voice-video-wrap">
-       <video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Listening_state.mp4"
+       <video src="avatars/listening.mp4"
               autoplay loop muted playsinline></video>
      </div>
      <div class="voice-label">Sun raha hoon...</div>
@@ -1013,7 +1013,7 @@ function addAiMsg(text, delay=0, showAvatar=true){
     setTimeout(()=>{
       const row=document.createElement('div');
       row.className='ai-msg-row';
-      row.innerHTML=`${showAvatar?`<div class="ai-avatar"><video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Idle_state.mp4" autoplay loop muted playsinline></video></div>`:''}
+      row.innerHTML=`${showAvatar?`<div class="ai-avatar"><video src="avatars/idle.mp4" autoplay loop muted playsinline></video></div>`:''}
         <div class="ai-msg-body">
           <p>${text}</p>
           <div class="ai-msg-time">${now()}</div>
@@ -1039,7 +1039,7 @@ function addUserMsg(text){
 function showTyping(){
   const row=document.createElement('div');
   row.className='typing-row'; row.id='typingRow';
-  row.innerHTML=`<div class="typing-bubble"><video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Thinking_state.mp4" autoplay loop muted playsinline></video></div>`;
+  row.innerHTML=`<div class="typing-bubble"><video src="avatars/thinking.mp4" autoplay loop muted playsinline></video></div>`;
   cs.appendChild(row); scroll();
 }
 function hideTyping(){ const t=document.getElementById('typingRow'); if(t) t.remove(); }
@@ -1347,7 +1347,7 @@ function startSpeaking(){
   // Show listening indicator in chat
   const row = document.createElement('div');
   row.className = 'listening-row'; row.id = 'listeningRow';
-  row.innerHTML = `<div class="listening-bot"><video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Listening_state.mp4" autoplay loop muted playsinline></video></div><span class="listening-text">Listening...</span>`;
+  row.innerHTML = `<div class="listening-bot"><video src="avatars/listening.mp4" autoplay loop muted playsinline></video></div><span class="listening-text">Listening...</span>`;
   cs.appendChild(row); scroll();
 }
 
