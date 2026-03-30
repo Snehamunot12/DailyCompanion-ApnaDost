@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apna Dost — Ramesh</title>
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JioType — ALL weights from JioBharatIQ CDN
+   get_assets('fonts') → cdn_url used directly
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@font-face {
+  font-family: 'JioType'; font-weight: 300; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 500; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 700; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 900; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Black.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 950; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-ExtraBlack.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: italic;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Italic.woff2') format('woff2');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Universal JioType enforcement — every element
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+  font-family: 'JioType', sans-serif;
+}
+/* Explicit override for form elements (browsers override font by default) */
+input, textarea, button, select, option, optgroup {
+  font-family: 'JioType', sans-serif;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS Design Tokens — resolve_token verified
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  /* Colors — JDS colour_system */
+  --jds-primary:        #6D17CE;
+  --jds-primary-60:     #6464ff;
+  --jds-primary-20:     #e8e8fc;
+  --jds-primary-10:     #f4f4fe;
+  --jds-secondary:      #f7ab20;
+  --jds-secondary-20:   #fef7e9;
+  --jds-sparkle:        #1eccb0;
+  --jds-sparkle-20:     #e8faf7;
+  --jds-error:          #fa2f40;
+  --jds-success:        #25ab21;
+  --jds-warning:        #f06d0f;
+
+  /* Text — JDS colour_system */
+  --jds-text-high:      #141414;
+  --jds-text-med:       #474747;
+  --jds-text-low:       rgba(20, 20, 20, 0.55);
+  --jds-text-disabled:  rgba(20, 20, 20, 0.38);
+
+  /* Surfaces — JDS surfaces */
+  --jds-surface-white:  #ffffff;
+  --jds-surface-ghost:  #eeeeef;
+  --jds-surface-bold:   #6D17CE;
+  --jds-surface-icon:   #e7e9ff;
+  --jds-grey-20:        #f5f5f5;
+  --jds-grey-40:        #e0e0e0;
+
+  /* Stroke */
+  --jds-stroke:         rgba(36, 38, 43, 0.12);
+
+  /* Spacing — JDS spacing */
+  --jds-space-4xs:  2px;
+  --jds-space-3xs:  4px;
+  --jds-space-2xs:  6px;
+  --jds-space-xs:   8px;
+  --jds-space-sm:   12px;
+  --jds-space-md:   16px;
+  --jds-space-lg:   24px;
+  --jds-space-xl:   32px;
+  --jds-space-2xl:  48px;
+
+  /* Border radius — JDS border_radius */
+  --jds-radius-xs:  4px;
+  --jds-radius-sm:  8px;
+  --jds-radius-md:  12px;
+  --jds-radius-lg:  16px;
+  --jds-radius-xl:  24px;
+  --jds-radius-full: 9999px;
+
+  /* Opacity — JDS opacity */
+  --jds-opacity-disabled: 0.38;
+  --jds-opacity-enabled:  1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS Typography Scale — Text component spec
+   display / headline / title / body / label
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jds-headline-m  { font-size: 20px; font-weight: 700; line-height: 1.3; color: var(--jds-text-high); }
+.jds-title-l     { font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--jds-text-high); }
+.jds-title-m     { font-size: 14px; font-weight: 700; line-height: 1.4; color: var(--jds-text-high); }
+.jds-title-s     { font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--jds-text-high); }
+.jds-body-l      { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--jds-text-high); }
+.jds-body-m      { font-size: 15px; font-weight: 400; line-height: 1.5; color: var(--jds-text-high); }
+.jds-body-s      { font-size: 13px; font-weight: 400; line-height: 1.5; color: var(--jds-text-high); }
+.jds-label-m     { font-size: 13px; font-weight: 500; line-height: 1.3; color: var(--jds-text-med); }
+.jds-label-s     { font-size: 11px; font-weight: 500; line-height: 1.3; color: var(--jds-text-low); }
+.jds-caption     { font-size: 11px; font-weight: 400; line-height: 1.3; color: var(--jds-text-low); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Page layout
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+body {
+  background: #0f0f1a;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SIDEBAR
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sidebar {
+  width: 200px;
+  background: var(--jds-surface-white);
+  border-right: 1px solid var(--jds-stroke);
+  padding: 28px 0 20px;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.sidebar-logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 18px 20px;
+}
+/* JDS 4-dot logo — matches ConversationalAI_ChatInterface Jio avatar grid */
+.jio-dot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+}
+.jio-dot-grid span {
+  border-radius: 2px;
+}
+.sidebar-app-name { font-size: 13px; font-weight: 700; color: var(--jds-text-high); line-height: 1.2; }
+.sidebar-app-sub  { font-size: 10px; font-weight: 500; color: var(--jds-text-low); text-transform: uppercase; letter-spacing: 0.5px; }
+.sidebar-divider  { height: 1px; background: var(--jds-stroke); margin: 0 0 12px; }
+.sidebar-section  { font-size: 10px; font-weight: 700; color: var(--jds-text-low); text-transform: uppercase; letter-spacing: 0.8px; padding: 0 18px 8px; }
+
+/* JDS ListItem spec: padding 12px 16px, gap 12px, min-height 56px */
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--jds-text-low);
+  border-left: 3px solid transparent;
+  font-size: 13px; font-weight: 500;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.nav-item:hover  { background: var(--jds-grey-20); }
+.nav-item.active {
+  background: var(--jds-primary-20);
+  color: var(--jds-primary);
+  border-left-color: var(--jds-primary);
+  font-weight: 700;
+}
+.nav-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sidebar-footer {
+  margin-top: auto;
+  padding: 12px 18px 0;
+  border-top: 1px solid var(--jds-stroke);
+  font-size: 11px; color: var(--jds-text-low); line-height: 1.5;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MAIN + PHONE FRAME
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.main {
+  margin-left: 200px;
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  min-height: 100vh;
+}
+.phone-frame {
+  width: 360px; height: 800px;
+  background: #111;
+  border-radius: 44px;
+  padding: 10px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 40px 100px rgba(0,0,0,0.7);
+  position: relative; flex-shrink: 0;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  background: var(--jds-surface-white);
+  border-radius: 36px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STATUS BAR
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.status-bar {
+  background: var(--jds-surface-white);
+  height: 52px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 24px 10px;
+  position: relative; flex-shrink: 0;
+}
+.status-bar::before {
+  content: '';
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 26px;
+  background: #111; border-radius: 0 0 20px 20px;
+}
+.status-time { font-size: 13px; font-weight: 700; color: var(--jds-text-high); line-height: 1; }
+.status-icons { display: flex; align-items: center; gap: 5px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS HEADER — lookup_component('Header')
+   height:56px, padding:0 16px, background:#fff
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jds-header {
+  height: 56px;
+  display: flex; align-items: center;
+  padding: 0 var(--jds-space-md);
+  background: var(--jds-surface-white);
+  border-bottom: 1px solid var(--jds-stroke);
+  gap: var(--jds-space-xs);
+  flex-shrink: 0;
+}
+.jds-header-start { display: flex; align-items: center; gap: var(--jds-space-xs); flex: 1; min-width: 0; }
+.jds-header-end   { display: flex; align-items: center; gap: 4px; }
+
+/* JDS icon button */
+.jds-icon-btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent;
+  color: var(--jds-text-high);
+  cursor: pointer; border-radius: var(--jds-radius-full);
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.jds-icon-btn:hover  { background: var(--jds-surface-ghost); }
+.jds-icon-btn:active { background: var(--jds-grey-40); }
+
+/* Header contact block */
+.hdr-contact {
+  display: flex; flex-direction: column; justify-content: center;
+  cursor: pointer; min-width: 0;
+}
+.hdr-name {
+  font-size: 15px; font-weight: 700;
+  color: var(--jds-text-high); line-height: 1.2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.hdr-status {
+  display: flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+.hdr-status-text {
+  font-size: 12px; font-weight: 500;
+  color: var(--jds-success); line-height: 1;
+}
+
+/* Online dot */
+.online-dot {
+  width: 7px; height: 7px;
+  background: var(--jds-success); border-radius: 50%;
+  flex-shrink: 0; display: inline-block;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHAT SCROLL AREA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chat-scroll {
+  flex: 1; overflow-y: auto;
+  padding: var(--jds-space-md) 0 var(--jds-space-xs);
+  display: flex; flex-direction: column; gap: 0;
+  scroll-behavior: smooth;
+  position: relative;
+}
+.chat-scroll::-webkit-scrollbar { display: none; }
+
+.date-sep {
+  display: flex; align-items: center; gap: var(--jds-space-xs);
+  padding: 4px var(--jds-space-md) var(--jds-space-xs);
+}
+.date-sep::before, .date-sep::after { content: ''; flex: 1; height: 1px; background: var(--jds-stroke); }
+.date-sep span { font-size: 11px; font-weight: 500; color: var(--jds-text-low); white-space: nowrap; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS LUCKY CARD (context / memory card)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.lucky-card {
+  background: var(--jds-surface-white);
+  border-radius: var(--jds-radius-lg);
+  border: 1px solid var(--jds-stroke);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin: 0 var(--jds-space-sm) var(--jds-space-sm);
+  overflow: hidden;
+}
+.lucky-card-hd {
+  display: flex; align-items: center; gap: var(--jds-space-xs);
+  padding: var(--jds-space-sm) var(--jds-space-sm) var(--jds-space-xs);
+}
+.lucky-card-hd-icon {
+  width: 40px; height: 40px;
+  background: var(--jds-surface-bold); border-radius: var(--jds-radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--jds-surface-white);
+}
+.lucky-divider { height: 1px; background: var(--jds-stroke); }
+.lucky-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--jds-stroke);
+}
+.lucky-cell {
+  background: var(--jds-surface-white);
+  padding: var(--jds-space-sm);
+  cursor: pointer; transition: background 0.15s;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.lucky-cell:active { background: var(--jds-grey-20); }
+.lucky-cell-label { font-size: 10px; font-weight: 700; color: var(--jds-text-low); text-transform: uppercase; letter-spacing: 0.4px; }
+.lucky-cell-val   { font-size: 13px; font-weight: 500; color: var(--jds-text-high); }
+.lucky-cell-tag {
+  display: inline-flex; align-items: center;
+  background: var(--jds-surface-icon); border-radius: var(--jds-radius-full);
+  padding: 2px var(--jds-space-xs);
+  font-size: 11px; font-weight: 500; color: var(--jds-primary); width: fit-content;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS ConversationalAI_ChatInterface
+   AI: Jio 4-dot avatar (32px, 2×2 grid, gap 2px, radius 2px)
+   User: #f5f5f5 bg, border-radius 16px 16px 4px 16px, max-width 80%, padding 16px
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* AI message row */
+.ai-msg-row {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 4px;
+  padding: var(--jds-space-xs) var(--jds-space-md);
+  animation: msgSlideIn 0.22s ease both;
+}
+.ai-avatar {
+  width: 28px; height: 28px;
+  flex-shrink: 0; overflow: hidden;
+}
+.ai-avatar video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+/* Jio 4-dot avatar — official JDS Conversational AI identity */
+.jio-avatar {
+  width: 32px; height: 32px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  flex-shrink: 0; margin-top: 2px;
+}
+.jio-avatar span { border-radius: 2px; }
+
+.ai-msg-body { flex: 1; }
+.ai-msg-body p {
+  font-size: 16px; font-weight: 400;
+  color: var(--jds-text-high); line-height: 1.5; margin: 0;
+}
+.ai-msg-time { display: none; }
+
+/* User message row */
+.user-msg-row {
+  display: flex; justify-content: flex-end;
+  padding: var(--jds-space-xs) var(--jds-space-md);
+  animation: msgSlideIn 0.22s ease both;
+}
+.user-msg {
+  background: var(--jds-grey-20);
+  border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px;
+  width: max-content;
+  max-width: 100%;
+}
+.user-msg p { font-size: 15px; font-weight: 400; color: var(--jds-text-high); line-height: 1.5; margin: 0; }
+
+
+.user-msg-time { display: none; }
+
+.feedback-row { display: none; }
+
+/* Typing indicator */
+.typing-row {
+  display: flex; align-items: center;
+  gap: var(--jds-space-sm);
+  padding: var(--jds-space-xs) var(--jds-space-md);
+}
+.typing-bubble {
+  width: 28px; height: 28px; overflow: hidden;
+}
+.typing-bubble video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS TODAY CARD (mood check rows)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.today-card {
+  background: var(--jds-surface-white);
+  border-radius: var(--jds-radius-lg);
+  border: 1px solid var(--jds-stroke);
+  margin: 0 var(--jds-space-sm) var(--jds-space-sm);
+  overflow: hidden;
+}
+.today-card-hd {
+  display: flex; align-items: center; gap: var(--jds-space-xs);
+  padding: var(--jds-space-sm) var(--jds-space-sm);
+  border-bottom: 1px solid var(--jds-stroke);
+}
+.today-card-hd-icon {
+  width: 36px; height: 36px;
+  background: var(--jds-surface-icon); border-radius: var(--jds-radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--jds-primary);
+}
+
+/* JDS ListItem spec: padding 12px 16px, gap 12px, min-height 56px */
+.today-row {
+  display: flex; align-items: center;
+  gap: var(--jds-space-sm); padding: var(--jds-space-sm) var(--jds-space-sm);
+  min-height: 56px; cursor: pointer; transition: background 0.15s;
+}
+.today-row:not(:last-child) { border-bottom: 1px solid var(--jds-stroke); }
+.today-row:hover { background: var(--jds-grey-20); }
+.today-row-icon {
+  width: 36px; height: 36px;
+  background: var(--jds-grey-20); border-radius: var(--jds-radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 16px;
+}
+.today-row-body  { flex: 1; }
+.today-row-label { font-size: 13px; font-weight: 700; color: var(--jds-text-high); }
+.today-row-hint  { font-size: 12px; font-weight: 400; color: var(--jds-text-low); }
+.today-row-score { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.today-row-num   { font-size: 18px; font-weight: 700; color: var(--jds-text-high); }
+.today-row-bar   { width: 40px; height: 5px; background: var(--jds-grey-40); border-radius: var(--jds-radius-full); overflow: hidden; }
+.today-row-fill  { height: 100%; border-radius: var(--jds-radius-full); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS ConversationalAI_SuggestionChips
+   Secondary: transparent, border:1px solid #6D17CE,
+              color:#6D17CE, border-radius:9999px, padding:12px 20px
+   Primary:   bg:#6D17CE, color:#fff, same radius/padding
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chips-wrap {
+  display: flex; flex-wrap: wrap; gap: var(--jds-space-xs);
+  padding: 4px var(--jds-space-md) var(--jds-space-xs);
+  animation: fadeDown 0.3s ease both;
+}
+.chip {
+  height: auto;
+  min-width: max-content;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(49,0,100,0.12);
+  background: rgba(255,255,255,0.01);
+  font-size: 14px; font-weight: 500;
+  color: #13002d;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: all 0.15s ease;
+  display: inline-flex; align-items: center;
+  line-height: 1; min-height: 16px;
+  font-feature-settings: 'liga' 0;
+}
+.chip:hover   { background: rgba(49,0,100,0.06); }
+.chip.selected { background: #ede7ff; color: #13002d; border-color: transparent; }
+.chip.used    { opacity: var(--jds-opacity-disabled); pointer-events: none; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOOD SHIFT BANNER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.mood-banner {
+  background: var(--jds-sparkle-20);
+  border: 1px solid rgba(30,204,176,0.2);
+  border-radius: var(--jds-radius-lg);
+  padding: var(--jds-space-sm) var(--jds-space-sm);
+  margin: 0 var(--jds-space-sm) var(--jds-space-xs);
+  display: flex; gap: var(--jds-space-xs); align-items: flex-start;
+  animation: fadeDown 0.3s ease both;
+}
+.mood-banner-icon {
+  width: 32px; height: 32px; background: var(--jds-sparkle);
+  border-radius: var(--jds-radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mood-banner-label { font-size: 10px; font-weight: 700; color: var(--jds-sparkle); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+.mood-banner-text  { font-size: 13px; color: var(--jds-text-med); line-height: 1.4; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CELEBRATION CARD
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* Figma 7018:2172 — Aaj ki jeet CTA card */
+.aaj-ki-jeet {
+  padding: 8px 18px;
+  animation: fadeDown 0.3s ease both;
+}
+.aaj-ki-jeet-inner {
+  background: #ffffff;
+  border: 1px solid rgba(36,38,43,0.13);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 14px;
+}
+.aaj-ki-jeet-icon {
+  width: 56px; height: 56px;
+  overflow: hidden; flex-shrink: 0;
+}
+.aaj-ki-jeet-icon img { width: 132%; height: 132%; margin: -16%; object-fit: cover; }
+.aaj-ki-jeet-title {
+  font-size: 20px; font-weight: 700;
+  color: #0c0d10; line-height: 1.1;
+  text-align: center; white-space: nowrap;
+  font-feature-settings: 'liga' 0;
+}
+.aaj-ki-jeet-body {
+  font-size: 16px; font-weight: 400;
+  color: #0c0d10; line-height: 1.3;
+  text-align: center;
+  font-feature-settings: 'liga' 0;
+}
+
+.celebration-card {
+  background: var(--jds-surface-bold);
+  border-radius: var(--jds-radius-lg);
+  padding: var(--jds-space-md) var(--jds-space-sm);
+  margin: 0 var(--jds-space-sm) var(--jds-space-sm);
+  display: flex; gap: var(--jds-space-sm); align-items: center;
+  animation: fadeDown 0.3s ease both;
+}
+.celebration-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.12); border-radius: var(--jds-radius-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 22px;
+}
+.celebration-title { font-size: 15px; font-weight: 700; color: var(--jds-surface-white); margin-bottom: 3px; }
+.celebration-text  { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.72); line-height: 1.45; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SUMMARY CARD (Today-card style)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.summary-card {
+  background: var(--jds-surface-white);
+  border-radius: var(--jds-radius-lg);
+  border: 1px solid var(--jds-stroke);
+  margin: 0 var(--jds-space-sm) var(--jds-space-sm);
+  overflow: hidden; animation: fadeDown 0.3s ease both;
+}
+.summary-arc  { padding: var(--jds-space-sm) var(--jds-space-sm) var(--jds-space-xs); display: flex; gap: 6px; align-items: flex-end; height: 58px; }
+.arc-bar      { flex: 1; border-radius: var(--jds-radius-xs) var(--jds-radius-xs) 0 0; min-height: 6px; }
+.arc-labels   { display: flex; padding: var(--jds-space-xs) var(--jds-space-sm) var(--jds-space-sm); border-top: 1px solid var(--jds-stroke); }
+.arc-lbl      { flex: 1; font-size: 10px; color: var(--jds-text-low); text-align: center; font-weight: 500; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS CHAT INPUT — lookup_component('ChatInput')
+   surface-ghost bg, border-radius 24px,
+   flex-column: textarea top + actions row below
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* Figma: ChatInput_Text_Collapsed */
+.sticky-footer {
+  background: var(--jds-surface-white);
+  padding: var(--jds-space-xs) var(--jds-space-md) var(--jds-space-lg);
+  flex-shrink: 0;
+}
+.jds-chat-input {
+  background: #eeeeef;
+  border-radius: 24px;
+  padding: 8px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.chat-input-text { position: relative; padding: 4px 8px; }
+.chat-input-placeholder {
+  position: absolute; top: 4px; left: 8px;
+  font-size: 16px; font-weight: 400;
+  color: #191b1e; opacity: 0.65;
+  pointer-events: none; line-height: 1.3;
+  font-feature-settings: 'liga' 0;
+}
+.chat-input-real {
+  width: 100%; background: transparent; border: none; outline: none;
+  resize: none; overflow: hidden;
+  font-size: 16px; color: #0b0034; line-height: 1.3;
+  min-height: 22px; font-feature-settings: 'liga' 0;
+}
+.chat-input-actions {
+  display: flex; align-items: center;
+  justify-content: space-between; height: 32px;
+}
+.chat-action-start { display: flex; gap: 2px; align-items: center; }
+.chat-action-end   { display: flex; align-items: center; gap: 8px; }
+
+.jds-action-btn {
+  width: 32px; height: 32px;
+  border-radius: 9999px; border: none;
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #6D17CE;
+  transition: background 0.15s;
+}
+.jds-action-btn:hover { background: rgba(109,23,206,0.08); }
+
+/* Figma: Speak button — surface/bold #6D17CE, pill, bold 14px */
+.jds-btn-primary {
+  background: #6D17CE; color: #ffffff;
+  border: none; border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 14px; font-weight: 700; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: opacity 0.15s; font-feature-settings: 'liga' 0;
+}
+.jds-btn-primary:active { opacity: 0.85; }
+.jds-btn-primary.speaking {
+  background: #6D17CE;
+}
+
+/* Listening indicator — Figma 1886:26465 */
+.listening-row {
+  display: flex; align-items: center;
+  gap: 4px;
+  padding: 6px 18px;
+  animation: fadeDown 0.2s ease both;
+}
+.listening-bot {
+  width: 28px; height: 28px;
+  flex-shrink: 0; overflow: hidden; border-radius: 4px;
+}
+.listening-bot video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.listening-text {
+  font-size: 14px; font-weight: 400;
+  color: #191b1e; opacity: 0.4;
+  line-height: 1.3;
+}
+
+.jds-send-btn {
+  width: 34px; height: 34px;
+  background: var(--jds-primary); color: var(--jds-surface-white);
+  border: none; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.jds-send-btn.visible { display: flex; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   VOICE OVERLAY — JDS states video (CDN MP4)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.voice-overlay {
+  position: absolute; inset: 0;
+  background: var(--jds-surface-white);
+  border-radius: 36px; z-index: 200;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+}
+.voice-overlay.active { opacity: 1; pointer-events: all; }
+.voice-video-wrap { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; }
+.voice-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+.voice-label { margin-top: 20px; font-size: 16px; font-weight: 500; color: var(--jds-text-med); }
+.voice-sub   { margin-top: 4px; font-size: 13px; color: var(--jds-text-low); }
+.voice-cancel-btn {
+  margin-top: 28px; padding: 10px 32px;
+  border-radius: var(--jds-radius-full);
+  border: 1px solid var(--jds-stroke);
+  background: transparent;
+  font-size: 14px; font-weight: 500; color: var(--jds-text-med);
+  cursor: pointer;
+}
+.voice-cancel-btn:active { background: var(--jds-grey-20); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PROFILE SHEET — JDS BottomSheet + ListItem spec
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.backdrop {
+  position: absolute; inset: 0; border-radius: 36px;
+  background: rgba(0,0,0,0.3); z-index: 140;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.backdrop.open { opacity: 1; pointer-events: all; }
+.profile-sheet {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--jds-surface-white);
+  border-radius: 22px 22px 36px 36px;
+  z-index: 150; transform: translateY(100%); transition: transform 0.3s ease;
+}
+.profile-sheet.open { transform: translateY(0); }
+.sheet-drag { display: flex; justify-content: center; padding: 12px 0 6px; }
+.sheet-drag::before { content: ''; width: 36px; height: 4px; background: var(--jds-grey-40); border-radius: var(--jds-radius-full); }
+.sheet-hero {
+  background: var(--jds-surface-bold);
+  padding: var(--jds-space-lg) var(--jds-space-md) var(--jds-space-md);
+  display: flex; flex-direction: column; align-items: center; gap: var(--jds-space-xs);
+}
+.sheet-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 900; color: var(--jds-surface-white);
+}
+.sheet-name  { font-size: 18px; font-weight: 700; color: var(--jds-surface-white); }
+.sheet-badge {
+  background: rgba(255,255,255,0.14); padding: 3px 12px;
+  border-radius: var(--jds-radius-full);
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.82);
+}
+.sheet-stats { display: flex; width: 100%; }
+.stat-cell   { flex: 1; text-align: center; padding: 10px 0; border-right: 1px solid rgba(255,255,255,0.15); }
+.stat-cell:last-child { border-right: none; }
+.stat-num    { font-size: 18px; font-weight: 700; color: var(--jds-surface-white); }
+.stat-lbl    { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+/* JDS ListItem spec: padding 12px 16px, gap 12px, min-height 56px */
+.sheet-rows { padding: 4px 0 24px; }
+.sheet-row {
+  display: flex; align-items: center;
+  gap: var(--jds-space-sm); padding: var(--jds-space-sm) var(--jds-space-md);
+  min-height: 56px; border-bottom: 1px solid var(--jds-stroke);
+  cursor: pointer; transition: background 0.15s;
+}
+.sheet-row:last-child { border-bottom: none; }
+.sheet-row:hover { background: var(--jds-grey-20); }
+.sheet-row-icon {
+  width: 36px; height: 36px;
+  background: var(--jds-surface-icon); border-radius: var(--jds-radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--jds-primary);
+}
+.sheet-row-label { flex: 1; font-size: 14px; font-weight: 500; color: var(--jds-text-high); }
+.sheet-row-val   { font-size: 13px; color: var(--jds-text-low); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS — JDS motion tokens
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes fadeDown  { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes msgSlideIn{ from{opacity:0;transform:translateY(6px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes typingBounce {
+  0%,80%,100%{transform:translateY(0);opacity:0.4}
+  40%{transform:translateY(-5px);opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SIDEBAR
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <!-- JDS 4-dot grid — brand identity -->
+    <div class="jio-dot-grid">
+      <span style="background:#6D17CE"></span>
+      <span style="background:#f7ab20"></span>
+      <span style="background:#6464ff"></span>
+      <span style="background:#1eccb0"></span>
+    </div>
+    <div>
+      <div class="sidebar-app-name">Apna Dost</div>
+      <div class="sidebar-app-sub">JBIQ</div>
+    </div>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section">Menu</div>
+
+  <div class="nav-item" onclick="switchNav(0,this)" id="nav0">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
+      </svg>
+    </div>
+    Home
+  </div>
+  <div class="nav-item active" onclick="switchNav(1,this)" id="nav1">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M15 4H9a7 7 0 00-1 13.92V20a1.5 1.5 0 002.4 1.2l4.27-3.2H15a7 7 0 000-14zm-7 8a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z" fill="currentColor"/>
+      </svg>
+    </div>
+    Ramesh
+  </div>
+  <div class="nav-item" onclick="switchNav(2,this)" id="nav2">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 01-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08A7.2 7.2 0 0112 19.2z" fill="currentColor"/>
+      </svg>
+    </div>
+    Profile
+  </div>
+  <div class="nav-item" onclick="switchNav(3,this)" id="nav3">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96a7.02 7.02 0 00-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54a7.39 7.39 0 00-1.62.94l-2.39-.96a.47.47 0 00-.59.22L2.74 8.87a.47.47 0 00.12.61l2.03 1.58A7.24 7.24 0 004.82 12c0 .31.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54a7.39 7.39 0 001.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 00-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="currentColor"/>
+      </svg>
+    </div>
+    Settings
+  </div>
+
+  <div class="sidebar-footer">Apna Dost v1.0<br>Powered by JBIQ</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MAIN + PHONE
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="main">
+ <div class="phone-frame">
+  <div class="phone-screen">
+
+   <!-- Status Bar -->
+   <div class="status-bar">
+     <span class="status-time">9:41</span>
+     <div class="status-icons">
+       <svg width="17" height="12" viewBox="0 0 17 12" fill="#141414">
+         <rect x="0" y="8" width="3" height="4" rx="1"/>
+         <rect x="4.5" y="5" width="3" height="7" rx="1"/>
+         <rect x="9" y="2" width="3" height="10" rx="1"/>
+         <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+       </svg>
+       <svg width="15" height="11" viewBox="0 0 24 18" fill="#141414">
+         <path d="M12 14a2 2 0 100 4 2 2 0 000-4zM2 5.5A14 14 0 0122 5.5l-2 2A11 11 0 004 7.5l-2-2zM6 9.5a9 9 0 0112 0l-2 2a6 6 0 00-8 0l-2-2z"/>
+       </svg>
+       <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+         <rect x="0" y="1" width="21" height="10" rx="2" stroke="#141414" stroke-width="1.5"/>
+         <rect x="22" y="3.5" width="3" height="5" rx="1" fill="#141414"/>
+         <rect x="1.5" y="2.5" width="16" height="7" rx="1.2" fill="#141414"/>
+       </svg>
+     </div>
+   </div>
+
+   <!-- JDS Header — height:56px, padding:0 16px -->
+   <div class="jds-header">
+     <div class="jds-header-start">
+       <button class="jds-icon-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+           <path d="M15 20a1 1 0 01-.71-.29l-7-7a1 1 0 010-1.42l7-7a1.005 1.005 0 011.42 1.42L9.41 12l6.3 6.29A1 1 0 0115 20z" fill="currentColor"/>
+         </svg>
+       </button>
+       <div class="hdr-contact" onclick="openProfile()">
+         <div class="hdr-name">Daily Companion</div>
+       </div>
+     </div>
+     <div class="jds-header-end">
+       <button class="jds-icon-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+           <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+           <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+         </svg>
+       </button>
+     </div>
+   </div>
+
+   <!-- Chat Scroll -->
+   <div class="chat-scroll" id="chatScroll">
+
+
+     <!-- JDS ConversationalAI_ChatInterface: AI message -->
+     <div class="ai-msg-row">
+       <div class="ai-avatar"><video src="/Users/sneha.munot/Downloads/Avatars/Light/HelloJio_Breath(IdleState)_242.mp4" autoplay loop muted playsinline></video></div>
+       <div class="ai-msg-body">
+         <p>Arre Ramesh bhai! Kaise ho? Mill mein aaj ka din kaisa gaya? 👋</p>
+         <div class="ai-msg-time">9:41</div>
+       </div>
+     </div>
+     <div class="feedback-row">
+       <button class="fb-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><path d="M1 21h4V9H1v12zm22-11a2 2 0 00-2-2h-6.31l.95-4.57.03-.32a1.5 1.5 0 00-.44-1.06L14.17 1 7.59 7.59A2 2 0 007 9v10a2 2 0 002 2h9a2 2 0 001.85-1.23l3.02-7.05A2 2 0 0023 12v-2z" fill="currentColor"/></svg>
+       </button>
+       <button class="fb-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><path d="M23 3h-4V15H23V3zM1 14a2 2 0 002 2h6.31l-.95 4.57-.03.32a1.5 1.5 0 00.44 1.06L9.83 23l6.58-6.59A2 2 0 0017 15V5a2 2 0 00-2-2H6a2 2 0 00-1.85 1.23L1.13 11.28A2 2 0 001 12v2z" fill="currentColor"/></svg>
+       </button>
+     </div>
+
+     <!-- JDS ConversationalAI_SuggestionChips — secondary variant -->
+     <div class="chips-wrap" id="chips1">
+       <button class="chip" onclick="selectMood('thak',this)">Thak gaya yaar</button>
+       <button class="chip" onclick="selectMood('theek',this)">Sab theek hai</button>
+       <button class="chip" onclick="selectMood('tension',this)">Tension hai</button>
+       <button class="chip" onclick="selectMood('achha',this)">Achha gaya!</button>
+     </div>
+
+   </div><!-- /chat-scroll -->
+
+   <!-- JDS ChatInput — sticky footer -->
+   <div class="sticky-footer">
+     <div class="jds-chat-input">
+       <div class="chat-input-text">
+         <div class="chat-input-placeholder" id="chatPlaceholder">Ask anything...</div>
+         <textarea class="chat-input-real" id="chatInput" rows="1"
+           oninput="onInputChange(this)"
+           onkeydown="onEnterKey(event)"></textarea>
+       </div>
+       <div class="chat-input-actions">
+         <div class="chat-action-start">
+           <button class="jds-action-btn">
+             <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+               <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+             </svg>
+           </button>
+         </div>
+         <div class="chat-action-end">
+           <button class="jds-action-btn" onclick="openVoice()">
+             <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+               <path d="M12 15a3 3 0 003-3V5a3 3 0 00-6 0v7a3 3 0 003 3zm6-5a1 1 0 00-1 1v1a5 5 0 11-10 0v-1a1 1 0 10-2 0v1a7 7 0 1014 0v-1a1 1 0 00-1-1zm-3 10H9a1 1 0 000 2h6a1 1 0 000-2z" fill="currentColor"/>
+             </svg>
+           </button>
+           <button class="jds-btn-primary" id="speakBtn" onclick="startSpeaking()">
+             <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+               <path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/>
+             </svg>
+             Speak
+           </button>
+           <button class="jds-send-btn" id="sendBtn" onclick="sendText()">
+             <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+               <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
+             </svg>
+           </button>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <!-- Voice Overlay — JDS states CDN video -->
+   <div class="voice-overlay" id="voiceOverlay">
+     <div class="voice-video-wrap">
+       <video src="https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/states/Light/Listening_state.mp4"
+              autoplay loop muted playsinline></video>
+     </div>
+     <div class="voice-label">Sun raha hoon...</div>
+     <div class="voice-sub">Bolte raho, Ramesh bhai</div>
+     <button class="voice-cancel-btn" onclick="closeVoice()">Rok do</button>
+   </div>
+
+   <!-- Backdrop + Profile Sheet -->
+   <div class="backdrop" id="backdrop" onclick="closeProfile()"></div>
+   <div class="profile-sheet" id="profileSheet">
+     <div class="sheet-drag"></div>
+     <div class="sheet-hero">
+       <div class="sheet-avatar">R</div>
+       <div class="sheet-name">Ramesh</div>
+       <div class="sheet-badge">Textile Worker · Mumbai</div>
+       <div class="sheet-stats">
+         <div class="stat-cell"><div class="stat-num">14</div><div class="stat-lbl">Baatein</div></div>
+         <div class="stat-cell"><div class="stat-num">6</div><div class="stat-lbl">Din streak</div></div>
+         <div class="stat-cell"><div class="stat-num">⭐4.8</div><div class="stat-lbl">Mood</div></div>
+       </div>
+     </div>
+     <div class="sheet-rows">
+       <div class="sheet-row">
+         <div class="sheet-row-icon">
+           <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5v-9l7 4.5-7 4.5z" fill="currentColor"/></svg>
+         </div>
+         <div class="sheet-row-label">Pasandida Topics</div>
+         <div class="sheet-row-val">Cricket, Ghar</div>
+       </div>
+       <div class="sheet-row">
+         <div class="sheet-row-icon">
+           <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="currentColor"/></svg>
+         </div>
+         <div class="sheet-row-label">Shift Timing</div>
+         <div class="sheet-row-val">8 AM – 8 PM</div>
+       </div>
+       <div class="sheet-row">
+         <div class="sheet-row-icon">
+           <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+         </div>
+         <div class="sheet-row-label">Family</div>
+         <div class="sheet-row-val">Wife + 2 bacche</div>
+       </div>
+     </div>
+   </div>
+
+  </div>
+ </div>
+</div>
+
+<script>
+let act = 1;
+const cs = document.getElementById('chatScroll');
+const now = () => new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false});
+const scroll = () => setTimeout(()=>{ cs.scrollTop=cs.scrollHeight; },60);
+
+function addAiMsg(text, delay=0, showAvatar=true){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const row=document.createElement('div');
+      row.className='ai-msg-row';
+      row.innerHTML=`${showAvatar?`<div class="ai-avatar"><video src="/Users/sneha.munot/Downloads/Avatars/Light/HelloJio_Breath(IdleState)_242.mp4" autoplay loop muted playsinline></video></div>`:''}
+        <div class="ai-msg-body">
+          <p>${text}</p>
+          <div class="ai-msg-time">${now()}</div>
+        </div>`;
+      cs.appendChild(row); scroll(); res();
+    },delay);
+  });
+}
+
+/* JDS ConversationalAI_ChatInterface: user bubble — #f5f5f5, radius 16px 16px 4px 16px, padding 16px */
+function addUserMsg(text){
+  const row=document.createElement('div');
+  row.className='user-msg-row';
+  row.innerHTML=`<div>
+    <div class="user-msg"><p>${text}</p></div>
+    <div class="user-msg-time">${now()}</div>
+  </div>`;
+  cs.appendChild(row);
+  setTimeout(()=>cs.scrollTo({top: row.offsetTop, behavior:'smooth'}), 60);
+}
+
+
+function showTyping(){
+  const row=document.createElement('div');
+  row.className='typing-row'; row.id='typingRow';
+  row.innerHTML=`<div class="typing-bubble"><video src="/Users/sneha.munot/Downloads/Avatars/Light/HelloJio_ThinkingLoop_242.mp4" autoplay loop muted playsinline></video></div>`;
+  cs.appendChild(row); scroll();
+}
+function hideTyping(){ const t=document.getElementById('typingRow'); if(t) t.remove(); }
+
+function disableChips(id){ document.querySelectorAll(`#${id} .chip`).forEach(c=>c.classList.add('used')); }
+
+function addChips(chips, fn, id, delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const row=document.createElement('div');
+      row.className='chips-wrap'; row.id=id;
+      row.innerHTML=chips.map(c=>`<button class="chip" onclick="${fn}('${c.key}',this)">${c.label}</button>`).join('');
+      cs.appendChild(row); scroll(); res();
+    },delay);
+  });
+}
+
+function addTodayCard(title, rows, id, delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const card=document.createElement('div');
+      card.className='today-card'; if(id) card.id=id;
+      card.innerHTML=`
+        <div class="today-card-hd">
+          <div class="today-card-hd-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+          </div>
+          <div class="jds-title-s">${title}</div>
+        </div>
+        ${rows.map(r=>`
+          <div class="today-row" onclick="todayRowClick('${r.key}')">
+            <div class="today-row-icon">${r.icon}</div>
+            <div class="today-row-body">
+              <div class="today-row-label">${r.label}</div>
+              <div class="today-row-hint">${r.hint}</div>
+            </div>
+            <div class="today-row-score">
+              <div class="today-row-num">${r.score}</div>
+              <div class="today-row-bar"><div class="today-row-fill" style="width:${r.score*10}%;background:${r.color}"></div></div>
+            </div>
+          </div>`).join('')}`;
+      cs.appendChild(card); scroll(); res();
+    },delay);
+  });
+}
+
+/* ── Conversation Acts ── */
+async function selectMood(mood, btn){
+  if(act!==1) return; act=2;
+  document.querySelectorAll('#chips1 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels={thak:'Thak gaya yaar',theek:'Sab theek hai',tension:'Tension hai',achha:'Achha gaya!'};
+  addUserMsg(labels[mood]);
+  showTyping();
+  const replies={
+    thak:'Arre yaar... overtime ka chakkar hai kya? Kya hua exactly?',
+    theek:'Wah bhai! Shift smooth rahi! Koi khaas baat?',
+    tension:'Kya hua bhai? Bolo bolo, main hoon yahan 👂',
+    achha:'Zabardast! 🎉 Kya hua aaj itna achha?'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[mood]);
+  await new Promise(r=>setTimeout(r,700));
+  if(mood==='thak'){
+    await addChips([
+      {key:'overtime', label:'Aaj bhi 2 ghante extra lagwaye'},
+      {key:'alag',    label:'Nahi aaj alag baat hai'},
+      {key:'ghar',    label:'Bas ghar jaana hai'}
+    ],'actOvertime','chips2',300);
+    return;
+  }
+  const moodRows={
+    theek:[
+      {key:'tariff',icon:'👍',label:'Boss ne tariff kiya',hint:'Mehnat rang laayi',score:8,color:'#25ab21'},
+      {key:'order',icon:'📦',label:'Naya order aaya',hint:'Mill mein kaam badhega',score:7,color:'#1eccb0'},
+      {key:'normal',icon:'😊',label:'Bas normal tha',hint:'Consistency hi success',score:6,color:'#6D17CE'}
+    ],
+    tension:[
+      {key:'salary',icon:'💰',label:'Salary cut hua',hint:'Union se baat karni hogi',score:3,color:'#fa2f40'},
+      {key:'boss',icon:'😤',label:'Boss se baat bigdi',hint:'Bahut stress hai',score:4,color:'#f06d0f'},
+      {key:'ghar',icon:'🏠',label:'Ghar ki chinta',hint:'Bacchon ki padhai',score:4,color:'#f7ab20'}
+    ],
+    achha:[
+      {key:'bonus',icon:'🎉',label:'Bonus mila!',hint:'Mehnat ka fal',score:9,color:'#25ab21'},
+      {key:'chutti',icon:'🏃',label:'Jaldi chutti mili',hint:'Ghar jaldi gaya',score:8,color:'#1eccb0'},
+      {key:'dost',icon:'🤝',label:'Dost se mila aaj',hint:'Bahut achha laga',score:8,color:'#6D17CE'}
+    ]
+  };
+  await addAiMsg('Batao, inme se kya hua aaj?');
+  await addTodayCard('Aaj ka Din', moodRows[mood], 'todayCard');
+}
+
+async function actOvertime(key, btn){
+  if(act!==2) return; act=3;
+  document.querySelectorAll('#chips2 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels={overtime:'Aaj bhi 2 ghante extra lagwaye', alag:'Nahi aaj alag baat hai', ghar:'Bas ghar jaana hai'};
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies={
+    overtime:'Yaar 2 ghante extra... iska matlab toh poora din mill mein hi gaya. Kitne baje chhute aaj?',
+    alag:'Achha? Toh kya hua phir? Bolo na...',
+    ghar:'Samajh sakta hoon. Ghar ki yaad aati hai shift ke baad. Sab theek hai ghar mein?'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key==='overtime'){
+    await new Promise(r=>setTimeout(r,500));
+    await addChips([
+      {key:'8baje',  label:'8 baje'},
+      {key:'9baje',  label:'9 baje'},
+      {key:'10baje', label:'10 ke baad'}
+    ],'actChutti','chips4',300);
+  }
+}
+
+async function actChutti(key, btn){
+  if(act!==3) return; act=4;
+  document.querySelectorAll('#chips4 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels={'8baje':'8 baje','9baje':'9 baje','10baje':'10 ke baad'};
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies={
+    '8baje':'8 baje... theek hai, kam se kam raat ka khaana toh ghar pe khaya hoga!',
+    '9baje':'9 baje tak? Yaar, itni raat tak mill mein rehna bahut mushkil hota hai.',
+    '10baje':'10 ke baad?! Bhai yeh toh bahut zyada ho gaya. Bahut dino se ghar bhi nahi gaya na?'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key==='10baje'){
+    await new Promise(r=>setTimeout(r,500));
+    await addChips([
+      {key:'mahine',  label:'4 mahine ho gaye'},
+      {key:'paise',   label:'Paise nai bacha paa raha'},
+      {key:'yaad',    label:'Ghar ki yaad aa rahi hai'}
+    ],'actGhar','chips5',300);
+  }
+}
+
+async function actGhar(key, btn){
+  if(act!==4) return; act=5;
+  document.querySelectorAll('#chips5 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels={mahine:'4 mahine ho gaye', paise:'Paise nai bacha paa raha', yaad:'Ghar ki yaad aa rahi hai'};
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies={
+    mahine:'Tu bahut strong hai jo yahan reh ke sab sambhaal raha hai. Tere ghar waale tujh pe proud honge, chahe bole ya na bole. Ye yaad rakhna.',
+    paise:'Overtime karte ho, phir bhi paisa nahi bachta — yeh dard samajh sakta hoon. Kahan ja raha hai sab?',
+    yaad:'Bhai yaad aana toh bahut natural hai. Apno se door rehna aasaan nahi hota. Ek baar call kiya aaj?'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key==='mahine'){
+    await new Promise(r=>setTimeout(r,1000));
+    await addAiMsg('Accha sun, ek baat yaad aayi — kal raat Bumrah ka spell dekha? Chaar overs mein do wickets! Tujhe toh cricket dekhne ka time hi nahi milta na?', 0, false);
+    await new Promise(r=>setTimeout(r,500));
+    await addChips([
+      {key:'milta',      label:'Kabhi kabhi dekh leta hoon'},
+      {key:'nahi',       label:'Nahi yaar, time hi nahi'},
+      {key:'highlights', label:'Sirf highlights dekh leta hoon'},
+      {key:'score',      label:'Haan yaar! Score kya tha?'}
+    ],'actCricketTime','chips6',300);
+  }
+}
+
+async function actCricketTime(key, btn){
+  if(act!==5) return; act=6;
+  document.querySelectorAll('#chips6 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels={milta:'Kabhi kabhi dekh leta hoon', nahi:'Nahi yaar, time hi nahi', highlights:'Sirf highlights dekh leta hoon', score:'Haan yaar! Score kya tha?'};
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies={
+    milta:'Sahi hai bhai! Thodi si cricket bhi zaroor dekho — din bhar ki thakaan uttar jaati hai!',
+    nahi:'Yaar itna kaam karta hai tu... kal kal kar ke zindagi nikal jaayegi. Thoda apne liye bhi time nikaal.',
+    highlights:'Highlights mein toh mazaa aata hai — seedha wickets aur sixes! Bumrah ka woh yorker dekha kya?',
+    score:'Bhai India ne 287 banaye, aur Pakistan ko 210 pe rok diya! Bumrah ke 2 wickets game-changer the!'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+}
+
+async function todayRowClick(key){
+  const card=document.getElementById('todayCard');
+  if(card) card.querySelectorAll('.today-row').forEach(r=>{r.style.opacity='0.38';r.style.pointerEvents='none';});
+  if(act!==2) return; act=3;
+  const deepReplies={
+    haath:'Yaar haath dard karna common hai mill mein. Raat ko warm paani mein daalte ho?',
+    neend:'Neend nahi? Dimag chalte rehta hai shift ke baad? Yeh sahi nahi bhai...',
+    shift:'12 ghante! Overtime allowance toh mila na?',
+    tariff:'Sahi hai bhai! Boss ki nazar mein aana zaroori hai 💪',
+    order:'Naya order matlab jyada kaam — income bhi badhegi!',
+    normal:'Normal bhi kafi hai. Consistency hi real success hai 😊',
+    salary:'Cut hua? Union ne kuch nahi kiya kya? Serious baat hai...',
+    boss:'Boss se jhagda stress deta hai. Kya issue tha?',
+    ghar:'Ghar ki chinta sabse bhari hoti hai. Sab theek hoga, himmat rakho 🙏',
+    bonus:'Bonus! 🎉 Chai pakodi bani hogi ghar mein!',
+    chutti:'Early chutti — bacchon ke saath time gaya hoga!',
+    dost:'Dost se milna recharge kar deta hai!'
+  };
+  showTyping();
+  await new Promise(r=>setTimeout(r,1800)); hideTyping();
+  await addAiMsg(deepReplies[key]||'Samajh sakta hoon bhai...');
+  await new Promise(r=>setTimeout(r,1200));
+  await addAiMsg('Ek minute sunoo — ek cheez share karna chahta hoon...');
+  await new Promise(r=>setTimeout(r,600));
+
+  const banner=document.createElement('div');
+  banner.className='mood-banner';
+  banner.innerHTML=`
+    <div class="mood-banner-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5v-9l7 4.5-7 4.5z" fill="#fff"/></svg>
+    </div>
+    <div>
+      <div class="mood-banner-label">Mood Shift 🏏</div>
+      <div class="mood-banner-text">Cricket ke baare mein suno — India ne kal raat jo match khela, woh kamaal tha!</div>
+    </div>`;
+  cs.appendChild(banner); scroll();
+
+  await new Promise(r=>setTimeout(r,1200));
+  await addAiMsg('Kal India vs Australia ka match dekha kya? Last over mein kya scene tha! 🏏');
+  await addChips([
+    {key:'haan',label:'Haan! Ekdum mast tha'},
+    {key:'nahi',label:'Nahi dekh paya yaar'}
+  ],'actCricket','chips3',500);
+}
+
+async function actCricket(resp, btn){
+  if(act!==3) return; act=4;
+  document.querySelectorAll('#chips3 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  addUserMsg(btn.textContent.trim());
+  showTyping();
+  const r1=resp==='haan'
+    ?'Sahi bhai! Rohit ka woh six... superb! Mill mein kisi ne dekha kya saath?'
+    :'Arre yaar! Miss kar diya. Clips zaroor dekho — 6 wickets last 8 overs! 🔥';
+  await new Promise(r=>setTimeout(r,1800)); hideTyping();
+  await addAiMsg(r1);
+  await new Promise(r=>setTimeout(r,1400));
+
+  const cel=document.createElement('div');
+  cel.className='celebration-card';
+  cel.innerHTML=`<div class="celebration-icon">⭐</div>
+    <div>
+      <div class="celebration-title">Ramesh, tum strong ho bhai!</div>
+      <div class="celebration-text">Itni mushkilon ke bawajood roz kaam par jaate ho. Yeh dedication bahut rare hai!</div>
+    </div>`;
+  cs.appendChild(cel); scroll();
+
+  await addAiMsg('Bhai, aaj ki baat se dil khush ho gaya. Apna khayal rakhna! 🙏', 800);
+  await new Promise(r=>setTimeout(r,1600));
+
+  const sum=document.createElement('div');
+  sum.className='summary-card';
+  sum.innerHTML=`
+    <div class="today-card-hd" style="border-bottom:1px solid var(--jds-stroke)">
+      <div class="today-card-hd-icon">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="currentColor"/></svg>
+      </div>
+      <div class="jds-title-s">Aaj ki baat — Mood Arc</div>
+    </div>
+    <div class="summary-arc">
+      <div class="arc-bar" style="height:28%;background:#fa2f40"></div>
+      <div class="arc-bar" style="height:45%;background:#f7ab20"></div>
+      <div class="arc-bar" style="height:62%;background:#f7ab20"></div>
+      <div class="arc-bar" style="height:78%;background:#1eccb0"></div>
+      <div class="arc-bar" style="height:95%;background:#6D17CE"></div>
+    </div>
+    <div class="arc-labels">
+      <span class="arc-lbl">Thaka</span>
+      <span class="arc-lbl">Share</span>
+      <span class="arc-lbl">Suna</span>
+      <span class="arc-lbl">Cricket</span>
+      <span class="arc-lbl">Khush</span>
+    </div>`;
+  cs.appendChild(sum); scroll();
+}
+
+/* ── Sidebar nav ── */
+function switchNav(idx,el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ── Chat Input ── */
+function onInputChange(el){
+  const ph=document.getElementById('chatPlaceholder');
+  const sb=document.getElementById('speakBtn');
+  const send=document.getElementById('sendBtn');
+  el.style.height='auto'; el.style.height=el.scrollHeight+'px';
+  if(el.value.trim()){
+    ph.style.display='none'; sb.style.display='none'; send.classList.add('visible');
+  } else {
+    ph.style.display='block'; sb.style.display='flex'; send.classList.remove('visible');
+  }
+}
+function onEnterKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendText(); } }
+function startSpeaking(){
+  const btn = document.getElementById('speakBtn');
+  btn.classList.add('speaking');
+  btn.onclick = stopSpeaking;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="2"/></svg> Stop`;
+  // Show listening indicator in chat
+  const row = document.createElement('div');
+  row.className = 'listening-row'; row.id = 'listeningRow';
+  row.innerHTML = `<div class="listening-bot"><video src="/Users/sneha.munot/Downloads/Avatars/Light/HelloJio_Listening_242.mp4" autoplay loop muted playsinline></video></div><span class="listening-text">Listening...</span>`;
+  cs.appendChild(row); scroll();
+}
+
+function stopSpeaking(){
+  const btn = document.getElementById('speakBtn');
+  btn.classList.remove('speaking');
+  btn.onclick = startSpeaking;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/></svg> Speak`;
+  // Remove listening indicator
+  const lr = document.getElementById('listeningRow'); if(lr) lr.remove();
+  sendText();
+}
+
+async function actSahiHai(){
+  act=7;
+  addUserMsg('Sahi hai');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Ramesh, aaj ki baat sunke lagta hai tu thoda halka feel kar raha hai. Yaad rakhna — roz thoda thoda jeetna, yahi toh asli strength hai.');
+  await new Promise(r=>setTimeout(r,600));
+  const card = document.createElement('div');
+  card.className = 'aaj-ki-jeet';
+  card.innerHTML = `
+    <div class="aaj-ki-jeet-inner">
+      <div class="aaj-ki-jeet-icon">
+        <img src="https://www.figma.com/api/mcp/asset/18e93b86-26c7-4406-8950-4d5572078ad9" alt="jeet">
+      </div>
+      <div class="aaj-ki-jeet-title">Aaj ki jeet</div>
+      <div class="aaj-ki-jeet-body">Tu yahan hai, lad raha hai, roz uth raha hai — yahi asli jeet hai, Ramesh bhai.</div>
+    </div>`;
+  cs.appendChild(card); scroll();
+  await new Promise(r=>setTimeout(r,1000));
+  await addAiMsg('Ek aur din survive kiya. Kal phir milenge, aur kal thoda aur aasan lagega.', 0, false);
+}
+
+async function actKalMilte(){
+  act=8;
+  addUserMsg('Haan. Kal milte hai.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Kal raat 10:30 baje milte hain. Tu soja ab. Take care.');
+}
+
+async function sendText(){
+  if(act===6){ await actSahiHai(); return; }
+  if(act===7){ await actKalMilte(); return; }
+  const inp=document.getElementById('chatInput');
+  const t=inp.value.trim(); if(!t) return;
+  inp.value='';
+  document.getElementById('chatPlaceholder').style.display='block';
+  document.getElementById('speakBtn').style.display='flex';
+  document.getElementById('sendBtn').classList.remove('visible');
+  inp.style.height='auto';
+  addUserMsg(t); showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  addAiMsg('Haan bhai, sun raha hoon. Bolo aur... 😊');
+}
+
+/* ── Voice + Profile ── */
+function openVoice()    { document.getElementById('voiceOverlay').classList.add('active'); }
+function closeVoice()   { document.getElementById('voiceOverlay').classList.remove('active'); }
+function openProfile()  { document.getElementById('profileSheet').classList.add('open'); document.getElementById('backdrop').classList.add('open'); }
+function closeProfile() { document.getElementById('profileSheet').classList.remove('open'); document.getElementById('backdrop').classList.remove('open'); }
+
+scroll();
+</script>
+</body>
+</html>
