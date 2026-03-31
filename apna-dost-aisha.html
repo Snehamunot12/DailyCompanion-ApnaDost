@@ -1145,39 +1145,7 @@ function addMusicCard(delay=0){
     setTimeout(()=>{
       const wrap=document.createElement('div');
       wrap.className='music-card-wrap';
-      wrap.innerHTML=`
-        <div class="music-card">
-          <div class="music-card-art">
-            <img src="avatars/tum-hi-ho.png" alt="Tum Hi Ho">
-          </div>
-          <div class="music-card-info">
-            <div class="music-card-title">Tum Hi Ho</div>
-            <div class="music-card-artist">Arijit Singh</div>
-            <div class="music-card-controls">
-              <!-- Back 10s (replay_10) -->
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="#004566" style="flex-shrink:0;cursor:pointer;display:block">
-                <path d="M12 5V1L7 6l5 4V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.31 11h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm3.35-2.53c0 .43-.05.79-.15 1.08-.1.29-.23.52-.4.69-.17.17-.36.3-.57.37-.22.07-.44.11-.67.11s-.45-.04-.67-.11c-.21-.07-.41-.2-.57-.37-.17-.17-.3-.4-.4-.69-.1-.29-.15-.65-.15-1.08v-.72c0-.43.05-.79.15-1.08.1-.29.23-.52.4-.69.17-.17.36-.3.57-.37.22-.07.44-.11.67-.11s.45.04.67.11c.21.07.41.2.57.37.17.17.3.4.4.69.1.29.15.65.15 1.08v.72zm-.85-.8c0-.28-.02-.52-.07-.7-.05-.18-.11-.33-.19-.43-.08-.1-.17-.18-.27-.22-.1-.04-.2-.06-.31-.06s-.21.02-.31.06c-.1.04-.19.12-.27.22-.08.1-.14.24-.19.43-.05.18-.07.42-.07.7v.88c0 .28.02.52.07.71.05.19.11.33.19.43.08.1.17.18.27.22.1.05.21.07.32.07s.22-.02.32-.07c.1-.05.19-.12.27-.22.08-.1.14-.25.19-.43.05-.19.07-.43.07-.71v-.88z"/>
-              </svg>
-              <!-- Play circle -->
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="#004566" style="flex-shrink:0;cursor:pointer;display:block">
-                <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-              </svg>
-              <!-- Forward 10s (forward_10) -->
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="#004566" style="flex-shrink:0;cursor:pointer;display:block">
-                <path d="M12 5V1l5 5-5 4V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8zm-1.31 11h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm3.35-2.53c0 .43-.05.79-.15 1.08-.1.29-.23.52-.4.69-.17.17-.36.3-.57.37-.22.07-.44.11-.67.11s-.45-.04-.67-.11c-.21-.07-.41-.2-.57-.37-.17-.17-.3-.4-.4-.69-.1-.29-.15-.65-.15-1.08v-.72c0-.43.05-.79.15-1.08.1-.29.23-.52.4-.69.17-.17.36-.3.57-.37.22-.07.44-.11.67-.11s.45.04.67.11c.21.07.41.2.57.37.17.17.3.4.4.69.1.29.15.65.15 1.08v.72zm-.85-.8c0-.28-.02-.52-.07-.7-.05-.18-.11-.33-.19-.43-.08-.1-.17-.18-.27-.22-.1-.04-.2-.06-.31-.06s-.21.02-.31.06c-.1.04-.19.12-.27.22-.08.1-.14.24-.19.43-.05.18-.07.42-.07.7v.88c0 .28.02.52.07.71.05.19.11.33.19.43.08.1.17.18.27.22.1.05.21.07.32.07s.22-.02.32-.07c.1-.05.19-.12.27-.22.08-.1.14-.25.19-.43.05-.19.07-.43.07-.71v-.88z"/>
-              </svg>
-            </div>
-            <div class="music-card-progress">
-              <div class="music-card-bar-track">
-                <div class="music-card-bar-fill"></div>
-              </div>
-              <div class="music-card-times">
-                <span>0:05</span>
-                <span>5:12</span>
-              </div>
-            </div>
-          </div>
-        </div>`;
+      wrap.innerHTML=`<img src="avatars/music-player.svg" alt="Music Player" style="width:100%;display:block;border-radius:16px;">`;
       cs.appendChild(wrap); scroll(); res();
     }, delay);
   });
@@ -1280,7 +1248,7 @@ async function actNoSleep(key, btn){
   await new Promise(r=>setTimeout(r,1600)); hideTyping();
   await addAiMsg(replies[key]);
   if(key==='padhai'){
-    await new Promise(r=>setTimeout(r,800));
+    await new Promise(r=>setTimeout(r,1000));
     await addAiMsg('Accha chal, thoda break le. Kal tune bola tha na ki Arijit Singh ka naya gaana sunna hai? Maine check kiya — "Tum Hi Ho... Again" release hua hai. Sunegi?', 0, false);
   }
 }
@@ -1293,6 +1261,45 @@ async function actChalega(){
   await addAiMsg('Chal lagati hoon! Arijit ki awaaz mein ek magic hai na — jaise koi samajh raha ho bina bole. Tu bhi waise hi hai, Aisha. Enjoy kar.');
   await new Promise(r=>setTimeout(r,500));
   await addMusicCard();
+  act=4;
+}
+
+async function actGaanaSuna(){
+  act=5;
+  addUserMsg('Gaana sunke accha laga');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Aisha, aaj ki baat mein bahut honesty thi. Main proud hoon ki tu open up karti hai. Ye teri strength hai.');
+  await new Promise(r=>setTimeout(r,500));
+  await addJeetCard();
+  await new Promise(r=>setTimeout(r,800));
+  await addAiMsg('Aaj tune khud ko priority diya. Ye teri jeet hai. Kal phir baat karenge.', 0, false);
+}
+
+async function actKalMilteAisha(){
+  act=6;
+  addUserMsg('Haan. Kal milte hai.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Kal raat 10 baje milte hain. Tu soja ab. Take care.');
+}
+
+function addJeetCard(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const wrap=document.createElement('div');
+      wrap.className='aaj-ki-jeet';
+      wrap.innerHTML=`
+        <div class="aaj-ki-jeet-inner">
+          <div class="aaj-ki-jeet-icon">
+            <img src="https://www.figma.com/api/mcp/asset/f4d42cb6-3515-4610-9919-02742a69d852" alt="">
+          </div>
+          <div class="aaj-ki-jeet-title">Aaj ki jeet</div>
+          <div class="aaj-ki-jeet-body">Tune aaj honestly baat ki — ye bahaduri hai, Aisha. Kal ek nayi shuruaat hai.</div>
+        </div>`;
+      cs.appendChild(wrap); scroll(); res();
+    }, delay);
+  });
 }
 
 async function actOvertime(key, btn){
@@ -1556,6 +1563,8 @@ async function actKalMilte(){
 
 async function sendText(){
   if(act===3){ await actChalega(); return; }
+  if(act===4){ await actGaanaSuna(); return; }
+  if(act===5){ await actKalMilteAisha(); return; }
   if(act===6){ await actSahiHai(); return; }
   if(act===7){ await actKalMilte(); return; }
   const inp=document.getElementById('chatInput');
