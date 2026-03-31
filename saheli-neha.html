@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apna Dost — Saheli</title>
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JioType — ALL weights from JioBharatIQ CDN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@font-face {
+  font-family: 'JioType'; font-weight: 300; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 500; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 700; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 900; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Black.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 950; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-ExtraBlack.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: italic;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Italic.woff2') format('woff2');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  font-family: 'JioType', sans-serif;
+}
+input, textarea, button, select, option, optgroup {
+  font-family: 'JioType', sans-serif;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS Design Tokens
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --jds-primary:        #6D17CE;
+  --jds-primary-20:     #e8e8fc;
+  --jds-secondary:      #f7ab20;
+  --jds-secondary-20:   #fef7e9;
+  --jds-sparkle:        #1eccb0;
+  --jds-sparkle-20:     #e8faf7;
+  --jds-error:          #fa2f40;
+  --jds-success:        #25ab21;
+  --jds-text-high:      #141414;
+  --jds-text-med:       #474747;
+  --jds-text-low:       rgba(20,20,20,0.55);
+  --jds-text-disabled:  rgba(20,20,20,0.38);
+  --jds-surface-white:  #ffffff;
+  --jds-surface-ghost:  #eeeeef;
+  --jds-surface-bold:   #6D17CE;
+  --jds-surface-icon:   #e7e9ff;
+  --jds-grey-20:        #f5f5f5;
+  --jds-grey-40:        #e0e0e0;
+  --jds-stroke:         rgba(36,38,43,0.12);
+  --jds-space-xs:       8px;
+  --jds-space-sm:       12px;
+  --jds-space-md:       16px;
+  --jds-space-lg:       24px;
+  --jds-radius-xs:      4px;
+  --jds-radius-sm:      8px;
+  --jds-radius-md:      12px;
+  --jds-radius-lg:      16px;
+  --jds-radius-full:    9999px;
+  --jds-opacity-disabled: 0.38;
+}
+
+body {
+  background: #0f0f1a;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SIDEBAR
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sidebar {
+  width: 200px;
+  background: var(--jds-surface-white);
+  border-right: 1px solid var(--jds-stroke);
+  padding: 28px 0 20px;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  z-index: 10;
+}
+.sidebar-logo { display: flex; align-items: center; gap: 10px; padding: 0 18px 20px; }
+.jio-dot-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3px; width: 20px; height: 20px; flex-shrink: 0;
+}
+.jio-dot-grid span { border-radius: 2px; }
+.sidebar-app-name { font-size: 13px; font-weight: 700; color: var(--jds-text-high); line-height: 1.2; }
+.sidebar-app-sub  { font-size: 10px; font-weight: 500; color: var(--jds-text-low); text-transform: uppercase; letter-spacing: 0.5px; }
+.sidebar-divider  { height: 1px; background: var(--jds-stroke); margin: 0 0 12px; }
+.sidebar-section  { font-size: 10px; font-weight: 700; color: var(--jds-text-low); text-transform: uppercase; letter-spacing: 0.8px; padding: 0 18px 8px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px; min-height: 44px; cursor: pointer;
+  color: var(--jds-text-low); border-left: 3px solid transparent;
+  font-size: 13px; font-weight: 500;
+  transition: all 0.15s ease; user-select: none;
+}
+.nav-item:hover  { background: var(--jds-grey-20); }
+.nav-item.active {
+  background: var(--jds-primary-20); color: var(--jds-primary);
+  border-left-color: var(--jds-primary); font-weight: 700;
+}
+.nav-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sidebar-footer {
+  margin-top: auto; padding: 12px 18px 0;
+  border-top: 1px solid var(--jds-stroke);
+  font-size: 11px; color: var(--jds-text-low); line-height: 1.5;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MAIN + PHONE FRAME
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.main {
+  margin-left: 200px; flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; min-height: 100vh;
+}
+.phone-frame {
+  width: 360px; height: 800px;
+  background: #111; border-radius: 44px; padding: 10px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 40px 100px rgba(0,0,0,0.7);
+  position: relative; flex-shrink: 0;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  background: var(--jds-surface-white);
+  border-radius: 36px; overflow: hidden;
+  display: flex; flex-direction: column; position: relative;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STATUS BAR
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.status-bar {
+  background: var(--jds-surface-white); height: 52px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 0 24px 10px; position: relative; flex-shrink: 0;
+}
+.status-bar::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 26px; background: #111; border-radius: 0 0 20px 20px;
+}
+.status-time   { font-size: 13px; font-weight: 700; color: var(--jds-text-high); line-height: 1; }
+.status-icons  { display: flex; align-items: center; gap: 5px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jds-header {
+  height: 56px; display: flex; align-items: center;
+  padding: 0 var(--jds-space-md);
+  background: var(--jds-surface-white);
+  border-bottom: 1px solid var(--jds-stroke);
+  gap: var(--jds-space-xs); flex-shrink: 0;
+}
+.jds-header-start { display: flex; align-items: center; gap: var(--jds-space-xs); flex: 1; min-width: 0; }
+.jds-header-end   { display: flex; align-items: center; gap: 4px; }
+.jds-icon-btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent; color: var(--jds-text-high);
+  cursor: pointer; border-radius: var(--jds-radius-full); transition: background 0.15s; flex-shrink: 0;
+}
+.jds-icon-btn:hover { background: var(--jds-surface-ghost); }
+.hdr-contact { display: flex; flex-direction: column; justify-content: center; cursor: pointer; min-width: 0; }
+.hdr-name    { font-size: 15px; font-weight: 700; color: var(--jds-text-high); line-height: 1.2; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHAT SCROLL
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chat-scroll {
+  flex: 1; overflow-y: auto;
+  padding: var(--jds-space-md) 0 var(--jds-space-xs);
+  display: flex; flex-direction: column; gap: 0;
+  scroll-behavior: smooth;
+}
+.chat-scroll::-webkit-scrollbar { display: none; }
+
+/* AI message */
+.ai-msg-row {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 4px; padding: var(--jds-space-xs) var(--jds-space-md);
+  animation: msgSlideIn 0.22s ease both;
+}
+.ai-avatar        { width: 28px; height: 28px; flex-shrink: 0; overflow: hidden; }
+.ai-avatar video  { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ai-msg-body p    { font-size: 16px; font-weight: 400; color: var(--jds-text-high); line-height: 1.5; margin: 0; }
+.ai-msg-time      { display: none; }
+
+/* User message */
+.user-msg-row {
+  display: flex; justify-content: flex-end;
+  padding: var(--jds-space-xs) var(--jds-space-md);
+  animation: msgSlideIn 0.22s ease both;
+}
+.user-msg {
+  background: var(--jds-grey-20);
+  border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px; width: max-content; max-width: 100%;
+}
+.user-msg p { font-size: 15px; font-weight: 400; color: var(--jds-text-high); line-height: 1.5; margin: 0; }
+.user-msg-time { display: none; }
+
+/* Typing indicator */
+.typing-row {
+  display: flex; align-items: center;
+  gap: var(--jds-space-sm); padding: var(--jds-space-xs) var(--jds-space-md);
+}
+.typing-bubble        { width: 28px; height: 28px; overflow: hidden; }
+.typing-bubble video  { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS CHIPS — ConversationalAI_SuggestionChips
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chips-wrap {
+  display: flex; flex-wrap: wrap; gap: var(--jds-space-xs);
+  padding: 4px var(--jds-space-md) var(--jds-space-xs);
+  animation: fadeDown 0.3s ease both;
+}
+.chip {
+  height: auto; min-width: max-content; padding: 8px 12px;
+  border-radius: 9999px; border: 1px solid rgba(49,0,100,0.12);
+  background: rgba(255,255,255,0.01);
+  font-size: 14px; font-weight: 500; color: #13002d;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: all 0.15s ease;
+  display: inline-flex; align-items: center;
+  line-height: 1; min-height: 16px;
+  font-feature-settings: 'liga' 0;
+}
+.chip:hover    { background: rgba(49,0,100,0.06); }
+.chip.selected { background: #ede7ff; color: #13002d; border-color: transparent; }
+.chip.used     { opacity: var(--jds-opacity-disabled); pointer-events: none; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MUSIC PLAYER CARD
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.music-card-wrap {
+  padding: 8px 16px;
+  animation: fadeDown 0.3s ease both;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AAJ KI JEET — Celebration card
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.aaj-ki-jeet { padding: 8px 18px; animation: fadeDown 0.3s ease both; }
+.aaj-ki-jeet-inner {
+  background: #ffffff; border: 1px solid rgba(36,38,43,0.13);
+  border-radius: 16px; padding: 16px 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.aaj-ki-jeet-icon { width: 56px; height: 56px; overflow: hidden; flex-shrink: 0; }
+.aaj-ki-jeet-icon img { width: 132%; height: 132%; margin: -16%; object-fit: cover; }
+.aaj-ki-jeet-title {
+  font-size: 20px; font-weight: 700; color: #0c0d10;
+  line-height: 1.1; text-align: center; white-space: nowrap;
+  font-feature-settings: 'liga' 0;
+}
+.aaj-ki-jeet-body {
+  font-size: 16px; font-weight: 400; color: #0c0d10;
+  line-height: 1.3; text-align: center;
+  font-feature-settings: 'liga' 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEALTH INFO CARD — Neha persona
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.health-card {
+  margin: 4px 16px 8px;
+  background: #ffffff; border: 1px solid rgba(36,38,43,0.13);
+  border-radius: 16px; overflow: hidden;
+  animation: fadeDown 0.3s ease both;
+  font-family: 'JioType', sans-serif;
+}
+.health-card-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 10px;
+  background: linear-gradient(135deg, #e8faf7 0%, #f0e8ff 100%);
+}
+.health-card-icon {
+  width: 40px; height: 40px; background: #1eccb0; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.health-card-title {
+  font-size: 14px; font-weight: 700; color: #0c0d10; line-height: 1.3;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.health-card-sub {
+  font-size: 11px; color: rgba(20,20,20,0.55);
+  font-family: 'JioType', sans-serif; margin-top: 2px;
+}
+.health-divider { height: 1px; background: rgba(36,38,43,0.12); }
+.health-item {
+  padding: 10px 14px; border-bottom: 1px solid rgba(36,38,43,0.08);
+  font-family: 'JioType', sans-serif;
+}
+.health-item:last-child { border-bottom: none; }
+.health-item-label {
+  font-size: 10px; font-weight: 700; color: #1eccb0;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0; margin-bottom: 3px;
+}
+.health-item-text {
+  font-size: 13px; color: #141414; line-height: 1.5;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BUSINESS PLAN CARD — Sunita Ji persona
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.plan-card {
+  margin: 4px 16px 8px;
+  background: #ffffff; border: 1px solid rgba(36,38,43,0.13);
+  border-radius: 16px; overflow: hidden;
+  animation: fadeDown 0.3s ease both;
+  font-family: 'JioType', sans-serif;
+}
+.plan-card-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 10px;
+  background: linear-gradient(135deg, #fef7e9 0%, #fff3d6 100%);
+}
+.plan-card-icon {
+  width: 40px; height: 40px; background: #f7ab20; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.plan-card-title {
+  font-size: 14px; font-weight: 700; color: #0c0d10; line-height: 1.3;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.plan-card-sub {
+  font-size: 11px; color: rgba(20,20,20,0.55);
+  font-family: 'JioType', sans-serif; margin-top: 2px;
+}
+.plan-step {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 14px; border-bottom: 1px solid rgba(36,38,43,0.08);
+  font-family: 'JioType', sans-serif;
+}
+.plan-step:last-of-type { border-bottom: none; }
+.plan-step-num {
+  width: 22px; height: 22px; background: #f7ab20; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 1px;
+  font-family: 'JioType', sans-serif;
+}
+.plan-step-title {
+  font-size: 13px; font-weight: 700; color: #141414;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.plan-step-desc {
+  font-size: 12px; color: rgba(20,20,20,0.55); margin-top: 2px;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.plan-total {
+  padding: 10px 14px; background: #fef7e9;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'JioType', sans-serif;
+}
+.plan-total-label { font-size: 13px; font-weight: 700; color: #141414; font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0; }
+.plan-total-val   { font-size: 15px; font-weight: 700; color: #f7ab20; font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEALTH JAANKARI LABEL — Figma 7033:7029
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.health-jaankari-label {
+  padding: 8px 18px;
+  font-family: 'JioType', sans-serif;
+  font-size: 16px; font-weight: 700; color: #0c0d10;
+  line-height: 1.3; font-feature-settings: 'liga' 0;
+  animation: fadeDown 0.3s ease both;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEALTH LIST — Figma 7033:6986
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.health-list {
+  padding: 0 0 0;
+  display: flex; flex-direction: column; gap: 8px;
+  font-family: 'JioType', sans-serif;
+  animation: fadeDown 0.3s ease both;
+}
+.health-list-item {
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: 'JioType', sans-serif;
+}
+.health-list-item-hd {
+  display: flex; align-items: center; gap: 8px;
+}
+.health-list-badge {
+  width: 16px; height: 16px; flex-shrink: 0;
+  background: #25ab21; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 500; color: #fff;
+  font-family: 'JioType', sans-serif;
+}
+.health-list-title {
+  font-size: 16px; font-weight: 500; color: #0c0d10;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.health-list-body {
+  font-size: 16px; font-weight: 400; color: #0c0d10; line-height: 1.3;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.health-list-disclaimer {
+  font-size: 14px; font-weight: 400; color: #191b1e; opacity: 0.65; line-height: 1.3;
+  padding-top: 4px;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DIVIDER — Figma 7033:7059
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jds-divider {
+  padding: 4px 18px;
+  animation: fadeDown 0.3s ease both;
+}
+.jds-divider-line {
+  width: 100%; height: 0.5px;
+  background: rgba(36,38,43,0.12);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BREATHING EXERCISE CARD — Meera persona
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.breathing-card {
+  margin: 4px 16px 8px;
+  background: #ffffff; border: 1px solid rgba(36,38,43,0.13);
+  border-radius: 16px; padding: 20px 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  animation: fadeDown 0.3s ease both;
+  font-family: 'JioType', sans-serif;
+}
+.breathing-title {
+  font-size: 14px; font-weight: 700; color: #141414;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+.breathing-circle-wrap {
+  width: 110px; height: 110px;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.breathing-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid rgba(109,23,206,0.25);
+  animation: breatheRing 8s ease-in-out infinite;
+}
+.breathing-circle {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #e8e1ff 20%, #6D17CE 100%);
+  display: flex; align-items: center; justify-content: center;
+  animation: breathePulse 8s ease-in-out infinite;
+}
+.breathing-phase {
+  font-size: 11px; font-weight: 700; color: #fff; text-align: center;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+  line-height: 1.2;
+}
+.breathing-steps {
+  font-size: 12px; color: rgba(20,20,20,0.55); text-align: center; line-height: 1.5;
+  font-family: 'JioType', sans-serif; font-feature-settings: 'liga' 0;
+}
+@keyframes breathePulse {
+  0%,100% { transform: scale(1); }
+  25%,50% { transform: scale(1.28); }
+}
+@keyframes breatheRing {
+  0%,100% { transform: scale(1); opacity: 0.3; }
+  25%,50% { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHAT INPUT — ChatInput JDS spec
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sticky-footer {
+  background: var(--jds-surface-white);
+  padding: var(--jds-space-xs) var(--jds-space-md) var(--jds-space-lg);
+  flex-shrink: 0;
+}
+.jds-chat-input {
+  background: #eeeeef; border-radius: 24px;
+  padding: 8px; display: flex; flex-direction: column; gap: 8px;
+}
+.chat-input-text { position: relative; padding: 4px 8px; }
+.chat-input-placeholder {
+  position: absolute; top: 4px; left: 8px;
+  font-size: 16px; font-weight: 400; color: #191b1e; opacity: 0.65;
+  pointer-events: none; line-height: 1.3; font-feature-settings: 'liga' 0;
+}
+.chat-input-real {
+  width: 100%; background: transparent; border: none; outline: none;
+  resize: none; overflow: hidden;
+  font-size: 16px; color: #0b0034; line-height: 1.3;
+  min-height: 22px; font-feature-settings: 'liga' 0;
+}
+.chat-input-actions {
+  display: flex; align-items: center; justify-content: space-between; height: 32px;
+}
+.chat-action-start { display: flex; gap: 2px; align-items: center; }
+.chat-action-end   { display: flex; align-items: center; gap: 8px; }
+.jds-action-btn {
+  width: 32px; height: 32px; border-radius: 9999px; border: none;
+  background: transparent; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #6D17CE; transition: background 0.15s;
+}
+.jds-action-btn:hover { background: rgba(109,23,206,0.08); }
+.jds-btn-primary {
+  background: #6D17CE; color: #ffffff; border: none; border-radius: 9999px;
+  padding: 8px 16px; font-size: 14px; font-weight: 700; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: opacity 0.15s; font-feature-settings: 'liga' 0;
+}
+.jds-btn-primary:active { opacity: 0.85; }
+.jds-send-btn {
+  width: 34px; height: 34px;
+  background: var(--jds-primary); color: var(--jds-surface-white);
+  border: none; border-radius: 50%;
+  display: none; align-items: center; justify-content: center; cursor: pointer;
+}
+.jds-send-btn.visible { display: flex; }
+
+/* Listening indicator */
+.listening-row {
+  display: flex; align-items: center;
+  gap: 4px; padding: 6px 18px; animation: fadeDown 0.2s ease both;
+}
+.listening-bot { width: 28px; height: 28px; flex-shrink: 0; overflow: hidden; border-radius: 4px; }
+.listening-bot video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.listening-text { font-size: 14px; font-weight: 400; color: #191b1e; opacity: 0.4; line-height: 1.3; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes fadeDown   { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes msgSlideIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SIDEBAR
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="jio-dot-grid">
+      <span style="background:#6D17CE"></span>
+      <span style="background:#f7ab20"></span>
+      <span style="background:#6464ff"></span>
+      <span style="background:#1eccb0"></span>
+    </div>
+    <div>
+      <div class="sidebar-app-name">Apna Dost</div>
+      <div class="sidebar-app-sub">JBIQ</div>
+    </div>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section">Personas</div>
+  <div class="nav-item" onclick="switchNav(0,this)" id="nav0">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
+      </svg>
+    </div>
+    Home
+  </div>
+  <div class="nav-item active" onclick="switchNav(1,this)" id="nav1">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M15 4H9a7 7 0 00-1 13.92V20a1.5 1.5 0 002.4 1.2l4.27-3.2H15a7 7 0 000-14zm-7 8a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z" fill="currentColor"/>
+      </svg>
+    </div>
+    Saheli
+  </div>
+  <div class="nav-item" onclick="switchNav(2,this)" id="nav2">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 01-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08A7.2 7.2 0 0112 19.2z" fill="currentColor"/>
+      </svg>
+    </div>
+    Profile
+  </div>
+  <div class="sidebar-footer">Apna Dost v1.0<br>Powered by JBIQ</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MAIN + PHONE
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="main">
+ <div class="phone-frame">
+  <div class="phone-screen">
+
+   <!-- Status Bar -->
+   <div class="status-bar">
+     <span class="status-time">9:41</span>
+     <div class="status-icons">
+       <svg width="17" height="12" viewBox="0 0 17 12" fill="#141414">
+         <rect x="0" y="8" width="3" height="4" rx="1"/>
+         <rect x="4.5" y="5" width="3" height="7" rx="1"/>
+         <rect x="9" y="2" width="3" height="10" rx="1"/>
+         <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+       </svg>
+       <svg width="15" height="11" viewBox="0 0 24 18" fill="#141414">
+         <path d="M12 14a2 2 0 100 4 2 2 0 000-4zM2 5.5A14 14 0 0122 5.5l-2 2A11 11 0 004 7.5l-2-2zM6 9.5a9 9 0 0112 0l-2 2a6 6 0 00-8 0l-2-2z"/>
+       </svg>
+       <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+         <rect x="0" y="1" width="21" height="10" rx="2" stroke="#141414" stroke-width="1.5"/>
+         <rect x="22" y="3.5" width="3" height="5" rx="1" fill="#141414"/>
+         <rect x="1.5" y="2.5" width="16" height="7" rx="1.2" fill="#141414"/>
+       </svg>
+     </div>
+   </div>
+
+   <!-- Header -->
+   <div class="jds-header">
+     <div class="jds-header-start">
+       <button class="jds-icon-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+           <path d="M15 20a1 1 0 01-.71-.29l-7-7a1 1 0 010-1.42l7-7a1.005 1.005 0 011.42 1.42L9.41 12l6.3 6.29A1 1 0 0115 20z" fill="currentColor"/>
+         </svg>
+       </button>
+       <div class="hdr-contact">
+         <div class="hdr-name">Daily Companion</div>
+       </div>
+     </div>
+     <div class="jds-header-end">
+       <button class="jds-icon-btn">
+         <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+           <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+           <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+         </svg>
+       </button>
+     </div>
+   </div>
+
+   <!-- Chat Scroll -->
+   <div class="chat-scroll" id="chatScroll">
+
+     <!-- Opening AI message — Neha -->
+     <div class="ai-msg-row">
+       <div class="ai-avatar"><video src="avatars/idle.mp4" autoplay loop muted playsinline></video></div>
+       <div class="ai-msg-body">
+         <p>Neha! Kal raat jo baat shuru ki thi periods ke baare mein... aaj kaisa feel ho raha hai? Yaad rakh, yahan sab safe hai — sirf tu aur main.</p>
+       </div>
+     </div>
+
+     <!-- Neha chips -->
+     <div class="chips-wrap" id="chips1">
+       <button class="chip" onclick="nehaChip1('tension',this)">Aaj bhi bahut tension hai</button>
+       <button class="chip" onclick="nehaChip1('better',this)">Thoda better, sawaal hain</button>
+       <button class="chip" onclick="nehaChip1('maa',this)">Maa ko bataun kya?</button>
+     </div>
+
+   </div><!-- /chat-scroll -->
+
+   <!-- JDS Chat Input -->
+   <div class="sticky-footer">
+     <div class="jds-chat-input">
+       <div class="chat-input-text">
+         <div class="chat-input-placeholder" id="chatPlaceholder">Ask anything...</div>
+         <textarea class="chat-input-real" id="chatInput" rows="1"
+           oninput="onInputChange(this)"
+           onkeydown="onEnterKey(event)"></textarea>
+       </div>
+       <div class="chat-input-actions">
+         <div class="chat-action-start">
+           <button class="jds-action-btn">
+             <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+               <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+             </svg>
+           </button>
+         </div>
+         <div class="chat-action-end">
+           <button class="jds-action-btn">
+             <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+               <path d="M12 15a3 3 0 003-3V5a3 3 0 00-6 0v7a3 3 0 003 3zm6-5a1 1 0 00-1 1v1a5 5 0 11-10 0v-1a1 1 0 10-2 0v1a7 7 0 1014 0v-1a1 1 0 00-1-1zm-3 10H9a1 1 0 000 2h6a1 1 0 000-2z" fill="currentColor"/>
+             </svg>
+           </button>
+           <button class="jds-btn-primary" id="speakBtn" onclick="startSpeaking()">
+             <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+               <path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/>
+             </svg>
+             Speak
+           </button>
+           <button class="jds-send-btn" id="sendBtn" onclick="sendText()">
+             <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+               <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
+             </svg>
+           </button>
+         </div>
+       </div>
+     </div>
+   </div>
+
+  </div>
+ </div>
+</div>
+
+<script>
+/* ── State ── */
+let act = 1;
+let persona = 'neha';
+
+const cs = document.getElementById('chatScroll');
+const now = () => new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false});
+const scroll = () => setTimeout(()=>{ cs.scrollTop = cs.scrollHeight; }, 60);
+
+/* ── Core message helpers ── */
+function addAiMsg(text, delay=0, showAvatar=true){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const row = document.createElement('div');
+      row.className = 'ai-msg-row';
+      row.innerHTML = `${showAvatar ? `<div class="ai-avatar"><video src="avatars/idle.mp4" autoplay loop muted playsinline></video></div>` : ''}
+        <div class="ai-msg-body">
+          <p>${text}</p>
+          <div class="ai-msg-time">${now()}</div>
+        </div>`;
+      cs.appendChild(row); scroll(); res();
+    }, delay);
+  });
+}
+
+function addUserMsg(text){
+  const row = document.createElement('div');
+  row.className = 'user-msg-row';
+  row.innerHTML = `<div><div class="user-msg"><p>${text}</p></div><div class="user-msg-time">${now()}</div></div>`;
+  cs.appendChild(row);
+  setTimeout(()=> cs.scrollTo({top: row.offsetTop, behavior:'smooth'}), 60);
+}
+
+function showTyping(){
+  const row = document.createElement('div');
+  row.className = 'typing-row'; row.id = 'typingRow';
+  row.innerHTML = `<div class="typing-bubble"><video src="avatars/thinking.mp4" autoplay loop muted playsinline></video></div>`;
+  cs.appendChild(row); scroll();
+}
+function hideTyping(){ const t = document.getElementById('typingRow'); if(t) t.remove(); }
+
+function addChips(chips, fn, id, delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const row = document.createElement('div');
+      row.className = 'chips-wrap'; row.id = id;
+      row.innerHTML = chips.map(c=>`<button class="chip" onclick="${fn}('${c.key}',this)">${c.label}</button>`).join('');
+      cs.appendChild(row); scroll(); res();
+    }, delay);
+  });
+}
+
+function addMusicCard(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const wrap = document.createElement('div');
+      wrap.className = 'music-card-wrap';
+      wrap.innerHTML = `<img src="avatars/music-player.svg" alt="Music Player" style="width:100%;display:block;border-radius:16px;">`;
+      cs.appendChild(wrap); scroll(); res();
+    }, delay);
+  });
+}
+
+function addJeetCard(title, body, delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const wrap = document.createElement('div');
+      wrap.className = 'aaj-ki-jeet';
+      wrap.innerHTML = `
+        <div class="aaj-ki-jeet-inner">
+          <div class="aaj-ki-jeet-icon">
+            <img src="https://www.figma.com/api/mcp/asset/f4d42cb6-3515-4610-9919-02742a69d852" alt="">
+          </div>
+          <div class="aaj-ki-jeet-title">${title}</div>
+          <div class="aaj-ki-jeet-body">${body}</div>
+        </div>`;
+      cs.appendChild(wrap); scroll(); res();
+    }, delay);
+  });
+}
+
+function addHealthCard(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const card = document.createElement('div');
+      card.className = 'health-card';
+      card.style.fontFamily = "'JioType', sans-serif";
+      card.innerHTML = `
+        <div class="health-card-hd">
+          <div class="health-card-icon">🌸</div>
+          <div>
+            <div class="health-card-title">Period Health — Kuch Zaruri Baatein</div>
+            <div class="health-card-sub">Yeh information sirf guidance ke liye hai</div>
+          </div>
+        </div>
+        <div class="health-divider"></div>
+        <div class="health-item">
+          <div class="health-item-label">PCOS ke baare mein</div>
+          <div class="health-item-text">Hormonal imbalance ki wajah se periods irregular ho sakte hain — ye common hai aur treatable bhi. Akeli nahi ho tum.</div>
+        </div>
+        <div class="health-item">
+          <div class="health-item-label">Doctor ke paas kab jaayein</div>
+          <div class="health-item-text">3 mahine se zyada irregular ho toh Lady Doctor se zaroor milna. PMCH Patna mein free consultation milti hai.</div>
+        </div>
+        <div class="health-item">
+          <div class="health-item-label">Ghar pe care</div>
+          <div class="health-item-text">Warm compress, zyada paani, iron-rich foods (palak, dates) — bahut farak padta hai.</div>
+        </div>`;
+      cs.appendChild(card); scroll(); res();
+    }, delay);
+  });
+}
+
+function addPlanCard(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const card = document.createElement('div');
+      card.className = 'plan-card';
+      card.style.fontFamily = "'JioType', sans-serif";
+      card.innerHTML = `
+        <div class="plan-card-hd">
+          <div class="plan-card-icon">🥫</div>
+          <div>
+            <div class="plan-card-title">Achaar Business — ₹6,000 ka Plan</div>
+            <div class="plan-card-sub">Ek ek step, Sunita Ji</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-step-num">1</div>
+          <div>
+            <div class="plan-step-title">Ingredients khareedein</div>
+            <div class="plan-step-desc">Aam, mirch, masale — local mandi se (₹3,000)</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-step-num">2</div>
+          <div>
+            <div class="plan-step-title">Packaging + Labels</div>
+            <div class="plan-step-desc">Attractive jar + printed labels (₹2,500)</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-step-num">3</div>
+          <div>
+            <div class="plan-step-title">FSSAI Registration</div>
+            <div class="plan-step-desc">Basic tier ke liye bilkul FREE</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-step-num">4</div>
+          <div>
+            <div class="plan-step-title">Pricing strategy</div>
+            <div class="plan-step-desc">₹150/jar bechein → ₹95 profit per jar</div>
+          </div>
+        </div>
+        <div class="plan-step">
+          <div class="plan-step-num">5</div>
+          <div>
+            <div class="plan-step-title">Pehle customers</div>
+            <div class="plan-step-desc">WhatsApp groups, mohalla, relatives — word of mouth</div>
+          </div>
+        </div>
+        <div class="plan-total">
+          <div class="plan-total-label">Total investment</div>
+          <div class="plan-total-val">~₹6,000</div>
+        </div>`;
+      cs.appendChild(card); scroll(); res();
+    }, delay);
+  });
+}
+
+function addBreathingPlayer(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const wrap = document.createElement('div');
+      wrap.style.padding = '0';
+      wrap.innerHTML = `<img src="avatars/breathing-player.svg" style="width:100%;display:block;border-radius:16px">`;
+      cs.appendChild(wrap); scroll(); res();
+    }, delay);
+  });
+}
+
+function addHealthLabel(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'health-jaankari-label';
+      el.textContent = '🩺️ Health Jaankari';
+      cs.appendChild(el); scroll(); res();
+    }, delay);
+  });
+}
+
+function addHealthList(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'health-list';
+      el.style.fontFamily = "'JioType', sans-serif";
+      el.innerHTML = `<img src="avatars/health-container.svg" style="width:100%;display:block;border-radius:16px">`;
+      cs.appendChild(el); scroll(); res();
+    }, delay);
+  });
+}
+
+function addDivider(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const el = document.createElement('div');
+      el.className = 'jds-divider';
+      el.innerHTML = `<div class="jds-divider-line"></div>`;
+      cs.appendChild(el); scroll(); res();
+    }, delay);
+  });
+}
+
+function addBreathingCard(delay=0){
+  return new Promise(res=>{
+    setTimeout(()=>{
+      const card = document.createElement('div');
+      card.className = 'breathing-card';
+      card.style.fontFamily = "'JioType', sans-serif";
+      card.innerHTML = `
+        <div class="breathing-title">1 Minute Breathing Exercise</div>
+        <div class="breathing-circle-wrap">
+          <div class="breathing-ring"></div>
+          <div class="breathing-circle">
+            <div class="breathing-phase" id="breathPhase">Breathe In</div>
+          </div>
+        </div>
+        <div class="breathing-steps">4 second lo · 4 second roko · 4 second chhoddo</div>`;
+      cs.appendChild(card); scroll();
+      // Cycle phase labels: in → hold → out → hold
+      const phases = ['Breathe In', 'Roko...', 'Breathe Out', 'Roko...'];
+      let p = 0;
+      const iv = setInterval(()=>{
+        p = (p+1) % 4;
+        const el = document.getElementById('breathPhase');
+        if(el) el.textContent = phases[p];
+      }, 4000);
+      setTimeout(()=> clearInterval(iv), 60000);
+      res();
+    }, delay);
+  });
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NEHA FLOW
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+async function nehaChip1(key, btn){
+  if(act !== 1) return; act = 2;
+  document.querySelectorAll('#chips1 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels = { tension:'Aaj bhi bahut tension hai', better:'Thoda better, sawaal hain', maa:'Maa ko bataun kya?' };
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies = {
+    tension: 'Tension hona natural hai, Neha... 3 mahine se irregular periods — yeh common hai aur treatable hai. Tujhe akeli nahi handle karna hai yeh.',
+    better:  'Sawaal poochna matlab tum apni health serious le rahi ho — yeh bahut achhi baat hai! Kya jaanna chahti ho?',
+    maa:     'Maa ko batana... yeh tumhari marzi hai, Neha. Par ek baat bataaun — akele mat jhelo. Sahara lena strength hai, weakness nahi.'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key === 'tension'){
+    await new Promise(r=>setTimeout(r,700));
+    await new Promise(r=>setTimeout(r,1000));
+    await addAiMsg('Iske alawa bhi kuch hai jo andar se khaa raha hai? Yahan batane mein koi darr nahi hai', 0, false);
+    await new Promise(r=>setTimeout(r,500));
+    await addChips([
+      {key:'yahi',  label:'Bas yahi tension hai'},
+      {key:'body',  label:'Body image ki bhi tension'},
+      {key:'sab',   label:'Sab kuch ek saath aa raha'}
+    ], 'nehaChip2', 'chips2', 300);
+  }
+}
+
+/* Neha Chip 2 — after tension response */
+async function nehaChip2(key, btn){
+  if(act !== 2) return; act = 3;
+  document.querySelectorAll('#chips2 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels = { yahi:'Bas yahi tension hai', body:'Body image ki bhi tension', sab:'Sab kuch ek saath aa raha' };
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies = {
+    yahi: 'Theek hai Neha, toh periods ka hi dhyan rakhte hain. Yeh ek cheez bhi kaafi hai — ek ek step.',
+    body: 'Body image aur periods dono saath... yeh bahut heavy hota hai andar se. Tu bata, kab se yeh feel ho raha hai?',
+    sab:  'Jab sab kuch ek saath aata hai toh overwhelm hona bilkul natural hai. Tu bahut kuch uthaa rahi hai akele — par ab nahi.'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key === 'yahi'){
+    await new Promise(r=>setTimeout(r,1000));
+    await addAiMsg('Chal ek kaam kar. Aankhein band kar. 4 second inhale... 4 second hold... 4 second exhale. Mai audio play karti hu. Tu try kar chal.', 0, false);
+    await new Promise(r=>setTimeout(r,500));
+    await addBreathingPlayer();
+    // pause here — act=3, waiting for Speak
+    return;
+  }
+  await new Promise(r=>setTimeout(r,1000));
+  await addAiMsg('Tujhe mai thode suggestions deti hu ki tu kya kya kar sakti hai', 0, false);
+  await new Promise(r=>setTimeout(r,500));
+  await addHealthLabel();
+  await addHealthList();
+  await addDivider();
+}
+
+/* Neha Speak 1 — after breathing player */
+async function nehaSpeak1(){
+  act = 4;
+  addUserMsg('Ye bohot hi refreshing tha.<br>Bohot accha laga.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Achha laga sunke! Breathing se body aur mind dono relax hote hain.', 0, true);
+  await new Promise(r=>setTimeout(r,1000));
+  await addAiMsg('Ab teri periods ki bhi thodi care karte hain. Tujhe mai thode suggestions deti hu ki tu kya kya kar sakti hai', 0, false);
+  await new Promise(r=>setTimeout(r,500));
+  await addHealthLabel();
+  await addHealthList();
+  await addDivider();
+}
+
+/* Neha Speak 2 — after health suggestions */
+async function nehaSpeak2(){
+  act = 5;
+  addUserMsg('Ye kaafi acchi information hai.<br>Mai dekhti hu.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Neha, tumne aaj ek bahut brave step liya — poochha, suna, samjha. Tumhari body ki suno — woh tumse baat karti hai. Darr se bhi ziada, himmat hai tumme.');
+  await new Promise(r=>setTimeout(r,500));
+  await addJeetCard('Aaj ki jeet', 'Tune aaj apni health ke baare mein poochha — ye bahaduri hai, Neha. Kal ek nayi shuruaat hai.');
+  await new Promise(r=>setTimeout(r,800));
+  await addAiMsg('Darr se shuru, sawaalon se aage, himmat pe khatam. Kal milte hain.', 0, false);
+}
+
+/* Neha Speak 3 — closing */
+async function nehaSpeak3(){
+  act = 6;
+  addUserMsg('Haan. Kal milte hain.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Kal 11 baje milte hai, jab sab soo jaye. Apna khayal rakhna. Good night.');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SUNITA JI FLOW
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+async function sunitaChip1(key, btn){
+  if(act !== 1) return; act = 2;
+  document.querySelectorAll('#chips1 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels = { aage:'Haan thoda aage badha', paise:'Paise ki tension aa rahi', ghar:'Ghar walon ko kaise bataun?' };
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies = {
+    aage:  'Wah! Bataiye kya kiya? Har chhota step ek bade sapne ki neenv hota hai, Sunita Ji!',
+    paise: 'Paise ki tension... samajhti hoon. Par Sunita Ji, aap ₹24,000 bacha chuki hain. Yeh chhota nahi hai. Ek plan dekhti hain?',
+    ghar:  'Ghar walon ko batana — yeh sabse mushkil part hota hai ek aurat ke sapne ka. Par aapka sapna real hai, Sunita Ji.'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key === 'paise'){
+    await new Promise(r=>setTimeout(r,700));
+    await addPlanCard();
+  }
+}
+
+/* Sunita Ji Speak 1 — after plan card */
+async function sunitaSpeak1(){
+  act = 3;
+  addUserMsg('Theek hai, plan pasand aaya.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Sunita Ji, yeh achaar ka business sirf paise nahi — yeh aapki pehchaan hai, aapka sapna hai. Sirf ek ek step karo. Main hamesha saath hoon.');
+  await new Promise(r=>setTimeout(r,500));
+  await addJeetCard('Aaj ki jeet', 'Aapne aaj apne sapne ke liye plan banaya — yeh pehla qadam bahut bada hai, Sunita Ji.');
+  await new Promise(r=>setTimeout(r,800));
+  await addAiMsg('Sapne se shuru, plan bana, himmat mili. Kal phir baat karenge.', 0, false);
+}
+
+/* Sunita Ji Speak 2 — closing */
+async function sunitaSpeak2(){
+  act = 4;
+  addUserMsg('Haan, koshish karenge.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Bilkul karein. Main hamesha saath hoon. Kal milte hain, Sunita Ji.');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MEERA FLOW
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+async function meeraChip1(key, btn){
+  if(act !== 1) return; act = 2;
+  document.querySelectorAll('#chips1 .chip').forEach(c=>{ c.style.width=c.offsetWidth+'px'; c.classList.remove('selected'); });
+  btn.classList.add('selected');
+  const labels = { rona:'Aaj bhi rona aa raha', achha:'Thoda achha hai aaj', saas:'Saas ne phir kuch kaha' };
+  addUserMsg(labels[key]);
+  showTyping();
+  const replies = {
+    rona:  'Rona aa raha hai toh ro lo, Meera... rokke rakhna zaruri nahi hai. Aansoon bhi ek tarah ka release hai.',
+    achha: 'Achha! Yeh sunke mujhe bhi achha laga, Meera. Kya hua differently aaj?',
+    saas:  'Saas ka... yeh rishta sabse complex hota hai. Kya hua aaj? Bolne se halka lagta hai.'
+  };
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg(replies[key]);
+  if(key === 'rona'){
+    await new Promise(r=>setTimeout(r,1000));
+    await addAiMsg('Ek kaam karo — 1 minute ke liye sirf breathe karo. Main guide karti hoon.', 0, false);
+    await new Promise(r=>setTimeout(r,500));
+    await addBreathingCard();
+  }
+}
+
+/* Meera Speak 1 — after breathing card */
+async function meeraSpeak1(){
+  act = 3;
+  addUserMsg('Ho gaya. Thoda achha laga.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Dekha? Breathing magic karti hai. Aur Meera... tu bahut strong hai. Ek gaana sunegi? Kabhi kabhi music hi dil ki baat kehta hai.');
+  await new Promise(r=>setTimeout(r,500));
+  await addMusicCard();
+}
+
+/* Meera Speak 2 — after music card */
+async function meeraSpeak2(){
+  act = 4;
+  addUserMsg('Gaana achha tha.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1600)); hideTyping();
+  await addAiMsg('Meera, tune aaj khud ko time diya — yeh teri jeet hai. Main proud hoon ki tu share karti hai.');
+  await new Promise(r=>setTimeout(r,500));
+  await addJeetCard('Aaj ki jeet', 'Tune aaj apne dil ki suni — yeh pehla step hai. Akelepan se shuru, aansuon se guzri, sukoon pe khatam.');
+  await new Promise(r=>setTimeout(r,800));
+  await addAiMsg('Kal phir milte hain. Soja ab, Meera.', 0, false);
+}
+
+/* Meera Speak 3 — closing */
+async function meeraSpeak3(){
+  act = 5;
+  addUserMsg('Haan. Kal milte hain.');
+  showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  await addAiMsg('Kal milte hain. Apna khayal rakhna. Take care.');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPEAK / STOP TOGGLE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function startSpeaking(){
+  const btn = document.getElementById('speakBtn');
+  btn.classList.add('speaking');
+  btn.onclick = stopSpeaking;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="2"/></svg> Stop`;
+  const row = document.createElement('div');
+  row.className = 'listening-row'; row.id = 'listeningRow';
+  row.innerHTML = `<div class="listening-bot"><video src="avatars/listening.mp4" autoplay loop muted playsinline></video></div><span class="listening-text">Listening...</span>`;
+  cs.appendChild(row); scroll();
+}
+
+function stopSpeaking(){
+  const btn = document.getElementById('speakBtn');
+  btn.classList.remove('speaking');
+  btn.onclick = startSpeaking;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/></svg> Speak`;
+  const lr = document.getElementById('listeningRow'); if(lr) lr.remove();
+  sendText();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SEND TEXT — routes Speak by persona + act
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+async function sendText(){
+  if(persona === 'neha'){
+    if(act === 3){ await nehaSpeak1(); return; }
+    if(act === 4){ await nehaSpeak2(); return; }
+    if(act === 5){ await nehaSpeak3(); return; }
+  } else if(persona === 'sunita'){
+    if(act === 2){ await sunitaSpeak1(); return; }
+    if(act === 3){ await sunitaSpeak2(); return; }
+  } else if(persona === 'meera'){
+    if(act === 2){ await meeraSpeak1(); return; }
+    if(act === 3){ await meeraSpeak2(); return; }
+    if(act === 4){ await meeraSpeak3(); return; }
+  }
+  // typed text fallback
+  const inp = document.getElementById('chatInput');
+  const t = inp.value.trim(); if(!t) return;
+  inp.value = '';
+  document.getElementById('chatPlaceholder').style.display = 'block';
+  document.getElementById('speakBtn').style.display = 'flex';
+  document.getElementById('sendBtn').classList.remove('visible');
+  inp.style.height = 'auto';
+  addUserMsg(t); showTyping();
+  await new Promise(r=>setTimeout(r,1400)); hideTyping();
+  addAiMsg('Sun rahi hoon... bolo aur.');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHAT INPUT HELPERS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function onInputChange(el){
+  const ph   = document.getElementById('chatPlaceholder');
+  const sb   = document.getElementById('speakBtn');
+  const send = document.getElementById('sendBtn');
+  el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px';
+  if(el.value.trim()){
+    ph.style.display = 'none'; sb.style.display = 'none'; send.classList.add('visible');
+  } else {
+    ph.style.display = 'block'; sb.style.display = 'flex'; send.classList.remove('visible');
+  }
+}
+function onEnterKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendText(); } }
+
+/* ── Sidebar ── */
+function switchNav(idx, el){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+scroll();
+</script>
+</body>
+</html>
