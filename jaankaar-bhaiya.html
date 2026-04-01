@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaankaar Bhaiya | JioBharatIQ</title>
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JioType — ALL 7 weights from JioBharatIQ CDN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@font-face {
+  font-family: 'JioType'; font-weight: 300; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 500; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 700; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 900; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-Black.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 950; font-style: normal;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeW05-ExtraBlack.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JioType'; font-weight: 400; font-style: italic;
+  src: url('https://raw.githubusercontent.com/sunit1986/JioBharatIQ_Server/main/assets/fonts/woff2/JioTypeVarW05-Italic.woff2') format('woff2');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  font-family: 'JioType', sans-serif;
+  font-feature-settings: 'liga' 0;
+}
+input, textarea, button, select { font-family: 'JioType', sans-serif; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   JDS Design Tokens
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --primary:        #6D17CE;
+  --primary-20:     #ede7ff;
+  --primary-30:     #c4a0f0;
+  --secondary-20:   #fef7e9;
+  --secondary-30:   #ffe3ae;
+  --secondary-50:   #f7ab20;
+  --secondary-60:   #ac660c;
+  --sparkle-20:     #e8faf7;
+  --sparkle-30:     #a7f6e9;
+  --sparkle-50:     #1eccb0;
+  --sparkle-60:     #1e7b74;
+  --error:          #fa2f40;
+  --warning:        #f06d0f;
+  --success:        #25ab21;
+  --text-high:      #141414;
+  --text-med:       #474747;
+  --text-low:       rgba(20,20,20,0.55);
+  --text-disabled:  rgba(25,27,30,0.38);
+  --surface-white:  #ffffff;
+  --surface-ghost:  #eeeeef;
+  --surface-bold:   #6D17CE;
+  --grey-20:        #f5f5f5;
+  --grey-40:        #e0e0e0;
+  --grey-60:        #b5b5b5;
+  --stroke:         rgba(36,38,43,0.12);
+  --chip-border:    rgba(49,0,100,0.12);
+  --chip-text:      #13002d;
+  --chip-sel-bg:    #ede7ff;
+}
+
+body {
+  background: #0f0f1a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PHONE FRAME
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.phone-frame {
+  width: 360px;
+  height: 800px;
+  border-radius: 40px;
+  border: 8px solid #1c1c1e;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  flex-shrink: 0;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  background: var(--surface-white);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 20px 8px;
+  flex-shrink: 0;
+}
+.status-time { font-size: 13px; font-weight: 700; color: var(--text-high); }
+.status-icons { display: flex; align-items: center; gap: 6px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.jds-header {
+  height: 56px; flex-shrink: 0;
+  display: flex; align-items: center;
+  padding: 0 12px 0 8px;
+  border-bottom: 1px solid var(--stroke);
+  background: var(--surface-white);
+  gap: 8px;
+}
+.hdr-back {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: none; cursor: pointer;
+  color: var(--text-high); flex-shrink: 0;
+}
+.hdr-info { flex: 1; min-width: 0; }
+.hdr-name { font-size: 16px; font-weight: 700; color: var(--text-high); }
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CHAT SCROLL
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.chat-scroll {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column;
+  gap: 4px; padding: 12px 0 8px;
+  scroll-behavior: smooth;
+}
+.chat-scroll::-webkit-scrollbar { width: 3px; }
+.chat-scroll::-webkit-scrollbar-thumb { background: var(--grey-40); border-radius: 9999px; }
+
+/* AI message */
+.ai-msg-row {
+  display: flex; flex-direction: column;
+  align-items: flex-start; padding: 4px 16px;
+  animation: fadeUp 0.3s ease both;
+}
+.ai-avatar {
+  width: 28px; height: 28px; border-radius: 4px;
+  overflow: hidden; flex-shrink: 0; margin-bottom: 4px;
+}
+.ai-avatar video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ai-msg-body p {
+  font-size: 15px; font-weight: 400;
+  color: var(--text-high); line-height: 1.5; margin: 0;
+}
+
+/* User message */
+.user-msg-row {
+  display: flex; justify-content: flex-end;
+  padding: 4px 16px;
+  animation: fadeUp 0.22s ease both;
+}
+/* Voice message bubble */
+.voice-msg-row {
+  display: flex; justify-content: flex-end;
+  padding: 4px 16px;
+  animation: fadeUp 0.22s ease both;
+}
+.voice-msg-pill {
+  background: #E4D8FF;
+  border-radius: 16px;
+  padding: 2px 8px;
+  display: flex; align-items: center; gap: 4px;
+  width: 100%; max-width: 300px;
+  min-height: 45px; overflow: hidden;
+}
+.voice-play-btn {
+  background: #E4D8FF; border: none; border-radius: 999px;
+  padding: 6px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.voice-waveform {
+  flex: 1; height: 41px; position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 2px;
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+.voice-waveform-bar {
+  width: 2px; background: #3900AD; border-radius: 999px; flex-shrink: 0;
+}
+.voice-timer {
+  font-size: 14px; font-weight: 400; color: #0c0d10;
+  white-space: nowrap; font-family: 'JioType', sans-serif;
+}
+.user-msg {
+  background: var(--grey-20);
+  border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px; width: max-content; max-width: 100%;
+}
+.user-msg p { font-size: 15px; font-weight: 400; color: var(--text-high); line-height: 1.5; margin: 0; }
+
+/* Typing indicator */
+.typing-row {
+  display: flex; align-items: center;
+  padding: 4px 16px; gap: 8px;
+}
+.typing-bubble {
+  width: 28px; height: 28px; border-radius: 4px; overflow: hidden;
+}
+.typing-bubble video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Listening indicator in chat */
+.listening-row {
+  display: flex; align-items: center;
+  gap: 8px; padding: 4px 16px;
+  animation: fadeUp 0.2s ease both;
+}
+.listening-avatar { width: 28px; height: 28px; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+.listening-avatar video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.listening-text { font-size: 14px; font-weight: 400; color: #191b1e; opacity: 0.4; }
+
+/* Chips */
+.chips-wrap {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 4px 16px 8px;
+  animation: fadeUp 0.3s ease both;
+}
+.chip {
+  padding: 8px 12px; border-radius: 9999px;
+  border: 1px solid var(--chip-border);
+  background: rgba(255,255,255,0.01);
+  color: var(--chip-text);
+  font-size: 14px; font-weight: 500;
+  white-space: nowrap; flex-shrink: 0; min-width: max-content;
+  cursor: pointer; transition: background 0.15s;
+}
+.chip.sel {
+  background: var(--chip-sel-bg); color: var(--chip-text);
+  border-color: transparent;
+}
+.chips-wrap.off { pointer-events: none; opacity: 0.38; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.card {
+  border-radius: 16px; padding: 20px;
+  animation: fadeUp 0.4s ease;
+  align-self: flex-start;
+  max-width: 92%; width: calc(100% - 32px);
+  margin: 4px 16px;
+  font-family: 'JioType', sans-serif;
+}
+.card .label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 8px; font-family: 'JioType', sans-serif;
+}
+/* context */
+.card.ctx { background: var(--secondary-20); border: 1px solid var(--secondary-30); }
+.card.ctx .label { color: var(--secondary-60); }
+.card.ctx .body { font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--text-high); }
+/* goal breakdown */
+.card.goal { background: var(--surface-ghost); border: 1px solid var(--stroke); }
+.card.goal .label { color: var(--text-low); }
+.card.goal .big { font-size: 32px; font-weight: 900; color: var(--text-high); margin: 8px 0; }
+.card.goal .sub { font-size: 13px; font-weight: 700; color: var(--text-low); margin-bottom: 12px; }
+.card.goal .row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.card.goal .bar-wrap { flex: 1; height: 6px; border-radius: 9999px; background: var(--grey-40); overflow: hidden; }
+.card.goal .bar-fill { height: 100%; border-radius: 9999px; transition: width 1s ease; }
+.card.goal .rname { font-size: 13px; font-weight: 500; color: var(--text-high); width: 90px; flex-shrink: 0; }
+.card.goal .rval { font-size: 13px; font-weight: 700; color: var(--text-high); width: 55px; text-align: right; flex-shrink: 0; }
+/* voice */
+.card.voice { background: var(--primary-20); border: 1px solid var(--primary-30); text-align: center; padding: 24px 20px; }
+.card.voice .label { color: var(--primary); }
+.card.voice .wave { display: flex; justify-content: center; gap: 3px; height: 40px; align-items: center; margin: 12px 0; }
+.card.voice .wave .bar { width: 3px; border-radius: 9999px; background: var(--primary); }
+.card.voice .rec-status { font-size: 14px; font-weight: 700; color: var(--primary); }
+.card.voice .play-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 12px auto; border: none; cursor: pointer;
+}
+/* spending */
+.card.spend { background: var(--surface-ghost); border: 1px solid var(--stroke); }
+.card.spend .label { color: var(--text-low); }
+.card.spend .srow { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.card.spend .sdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.card.spend .sname { font-size: 14px; font-weight: 500; color: var(--text-high); flex: 1; }
+.card.spend .sval { font-size: 14px; font-weight: 700; color: var(--text-high); }
+.card.spend .sbar { height: 4px; border-radius: 9999px; margin: 2px 0 8px 20px; transition: width 1s ease; }
+.card.spend .stotal { display: flex; justify-content: space-between; padding-top: 12px; margin-top: 8px; border-top: 1.5px solid var(--grey-40); font-size: 14px; font-weight: 700; }
+.card.spend .stotal .tv { color: var(--error); }
+/* progress */
+.card.prog { background: var(--sparkle-20); border: 1px solid var(--sparkle-30); text-align: center; }
+.card.prog .label { color: var(--sparkle-60); }
+.card.prog .ring-wrap { width: 120px; height: 120px; margin: 12px auto; position: relative; }
+.card.prog .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.card.prog .ring-bg { fill: none; stroke: var(--sparkle-30); stroke-width: 8; }
+.card.prog .ring-fg { fill: none; stroke: var(--sparkle-50); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.5s ease; }
+.card.prog .ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.card.prog .ring-amt { font-size: 22px; font-weight: 900; color: var(--text-high); }
+.card.prog .ring-sub { font-size: 11px; font-weight: 700; color: var(--text-low); }
+.card.prog .prog-info { font-size: 13px; font-weight: 500; color: var(--text-low); margin-top: 8px; }
+/* nudge */
+.card.nudge { background: var(--surface-white); border: 1.5px solid var(--warning); display: flex; align-items: center; gap: 12px; }
+.card.nudge .nicon { width: 36px; height: 36px; border-radius: 12px; background: var(--secondary-20); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.card.nudge .ntext { font-size: 14px; font-weight: 700; color: var(--text-high); line-height: 1.4; }
+/* time skip */
+.card.skip { background: #1c1c2e; border: none; text-align: center; padding: 24px 20px; align-self: center; max-width: 85%; margin: 4px auto; }
+.card.skip .skip-icon { font-size: 20px; font-weight: 900; color: var(--grey-60); margin-bottom: 8px; }
+.card.skip .skip-text { font-size: 17px; font-weight: 900; color: #ffffff; }
+.card.skip .skip-bar { width: 100%; height: 4px; border-radius: 9999px; background: rgba(255,255,255,0.15); margin-top: 12px; overflow: hidden; }
+.card.skip .skip-fill { height: 100%; border-radius: 9999px; background: var(--sparkle-50); transition: width 1.2s ease; }
+/* milestone */
+.card.mile { background: linear-gradient(135deg, var(--sparkle-20), var(--secondary-20)); border: 1px solid var(--sparkle-30); text-align: center; padding: 24px 20px; }
+.card.mile .label { color: var(--sparkle-60); }
+.card.mile .mile-amt { font-size: 36px; font-weight: 900; color: var(--text-high); margin: 8px 0; }
+.card.mile .mile-sub { font-size: 14px; font-weight: 700; color: var(--sparkle-60); }
+/* journey */
+.card.journey { background: var(--surface-ghost); border: 1px solid var(--stroke); }
+.card.journey .label { color: var(--text-low); }
+.card.journey .jline { display: flex; align-items: center; gap: 0; margin: 12px 0; }
+.card.journey .jdot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--sparkle-50); }
+.card.journey .jdot.done { background: var(--sparkle-50); }
+.card.journey .jdot.next { border-style: dashed; border-color: var(--grey-60); }
+.card.journey .jseg { flex: 1; height: 2px; background: var(--sparkle-50); }
+.card.journey .jseg.next { background: var(--grey-40); }
+.card.journey .jlabels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: var(--text-low); }
+.card.journey .jlabels .jdone { color: var(--sparkle-60); }
+/* celebration */
+.card.celeb { background: var(--secondary-20); border: 1px solid var(--secondary-30); text-align: center; padding: 24px; }
+.card.celeb .label { color: var(--secondary-60); }
+.card.celeb .cquote { font-size: 15px; font-weight: 700; line-height: 1.6; color: var(--text-high); margin: 12px 0; }
+.card.celeb .csign { font-size: 13px; font-weight: 500; color: var(--text-low); }
+/* summary */
+.card.summary { background: var(--surface-ghost); border: 1px solid var(--stroke); }
+.card.summary .label { color: var(--text-low); }
+.card.summary .stxt { font-size: 14px; font-weight: 500; color: var(--text-high); line-height: 1.5; margin: 8px 0; }
+.card.summary .stime { font-size: 13px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INPUT BAR — JDS ChatInput
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sticky-footer {
+  flex-shrink: 0;
+  background: var(--surface-white);
+  padding: 8px 16px 24px;
+}
+.jds-chat-input {
+  background: var(--surface-ghost);
+  border-radius: 24px; padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.chat-input-text { position: relative; padding: 0 8px; }
+.chat-input-placeholder {
+  font-size: 16px; font-weight: 400;
+  color: rgba(25,27,30,0.65); pointer-events: none;
+  position: absolute; top: 0; left: 8px;
+}
+.chat-input-real {
+  width: 100%; border: none; background: none;
+  font-size: 16px; font-weight: 400; color: var(--text-high);
+  outline: none; resize: none; min-height: 24px;
+}
+.chat-input-actions {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 4px;
+}
+.chat-action-start, .chat-action-end { display: flex; align-items: center; gap: 8px; }
+.jds-action-btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  color: var(--primary);
+}
+.jds-speak-btn {
+  background: var(--primary); color: #ffffff; border: none;
+  border-radius: 9999px; padding: 8px 16px;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: opacity 0.15s;
+}
+.jds-speak-btn:active { opacity: 0.85; }
+.jds-speak-btn.listening {
+  background: #333;
+}
+/* Recording state */
+.rec-wave-wrap {
+  display: none;
+  background: #cce8f9;
+  border-radius: 16px;
+  padding: 0 14px;
+  height: 45px;
+  align-items: center;
+  gap: 10px;
+}
+.rec-bars {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 36px;
+  overflow: hidden;
+}
+.rec-bar {
+  flex-shrink: 0;
+  width: 3px;
+  background: #f6a623;
+  border-radius: 2px;
+  animation: recPulse 0.7s ease-in-out infinite;
+}
+@keyframes recPulse {
+  0%,100% { height: 4px; }
+  50% { height: 30px; }
+}
+.rec-timer {
+  font-size: 13px; font-weight: 500; color: #141414; white-space: nowrap;
+}
+/* Circle send button (recording mode) */
+.jds-send-circle {
+  display: none;
+  width: 36px; height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  border: none; cursor: pointer;
+  align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Snackbar */
+.snackbar {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1c1c1e;
+  color: #ffffff;
+  font-size: 13px; font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 999px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+}
+.snackbar.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@keyframes waveAnim {
+  0%, 100% { height: 8px; opacity: 0.4; }
+  50%       { height: 100%; opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+ <div class="phone-screen">
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="status-time">9:41</span>
+    <div class="status-icons">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="#141414">
+        <rect x="0" y="8" width="3" height="4" rx="1"/>
+        <rect x="4.5" y="5" width="3" height="7" rx="1"/>
+        <rect x="9" y="2" width="3" height="10" rx="1"/>
+        <rect x="13.5" y="0" width="3" height="12" rx="1"/>
+      </svg>
+      <svg width="15" height="11" viewBox="0 0 24 18" fill="#141414">
+        <path d="M12 14a2 2 0 100 4 2 2 0 000-4zM2 5.5A14 14 0 0122 5.5l-2 2A11 11 0 004 7.5l-2-2zM6 9.5a9 9 0 0112 0l-2 2a6 6 0 00-8 0l-2-2z"/>
+      </svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+        <rect x="0" y="1" width="21" height="10" rx="2" stroke="#141414" stroke-width="1.5"/>
+        <rect x="22" y="3.5" width="3" height="5" rx="1" fill="#141414"/>
+        <rect x="1.5" y="2.5" width="16" height="7" rx="1.2" fill="#141414"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hidden avatar for state tracking (not shown in header) -->
+  <video id="avatarVideo" src="avatars/idle.mp4" autoplay loop muted playsinline style="display:none"></video>
+
+  <!-- Header -->
+  <div class="jds-header">
+    <button class="hdr-back">
+      <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+        <path d="M15 20a1 1 0 01-.71-.29l-7-7a1 1 0 010-1.42l7-7a1.005 1.005 0 011.42 1.42L9.41 12l6.3 6.29A1 1 0 0115 20z" fill="currentColor"/>
+      </svg>
+    </button>
+    <div class="hdr-info">
+      <div class="hdr-name">Daily Companion</div>
+    </div>
+    <button class="hdr-back">
+      <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+        <path d="M19.5 4.5a3.54 3.54 0 00-5 0l-.29.29 5 5 .29-.29a3.54 3.54 0 000-5zm-13.95 9a3 3 0 00-.76 1.3l-1 3.65a1.5 1.5 0 001.81 1.81l3.65-1.05a3 3 0 001.3-.76l7.24-7.24-5-5-7.24 7.29z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Chat Scroll -->
+  <div class="chat-scroll" id="chat"></div>
+  <div class="snackbar" id="snackbar"></div>
+
+  <!-- Input Bar -->
+  <div class="sticky-footer">
+    <div class="jds-chat-input">
+      <!-- Normal: textarea -->
+      <div class="chat-input-text" id="chatTextRow">
+        <div class="chat-input-placeholder" id="chatPlaceholder">Ask anything...</div>
+        <textarea class="chat-input-real" id="chatIn" rows="1"
+          oninput="this.previousElementSibling.style.display=this.value?'none':'block'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();addUser(this.value.trim());this.value='';this.previousElementSibling.style.display='block';}">
+        </textarea>
+      </div>
+      <!-- Recording: waveform + timer -->
+      <div class="rec-wave-wrap" id="recWaveWrap">
+        <div class="rec-bars" id="recBarsEl"></div>
+        <span class="rec-timer" id="recTimerEl">00:00</span>
+      </div>
+      <div class="chat-input-actions">
+        <div class="chat-action-start">
+          <button class="jds-action-btn">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <path d="M19 11h-6V5a1 1 0 00-2 0v6H5a1 1 0 000 2h6v6a1 1 0 002 0v-6h6a1 1 0 000-2z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        <div class="chat-action-end">
+          <!-- Trash icon (shown only during recording) — contained ghost style -->
+          <button id="trashBtn" onclick="cancelRecording()" style="display:none;width:32px;height:32px;background:rgba(255,255,255,0.01);border:none;border-radius:999px;cursor:pointer;padding:0;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M0 16C0 7.16347 7.16344 0 16 0C24.8366 0 32 7.16347 32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16Z" fill="white" fill-opacity="0.01"/><g clip-path="url(#clip_trash)"><path d="M22.6667 11H21V10.1667C21 9.50365 20.7366 8.86776 20.2678 8.39892C19.7989 7.93008 19.163 7.66669 18.5 7.66669H13.5C12.837 7.66669 12.2011 7.93008 11.7322 8.39892C11.2634 8.86776 11 9.50365 11 10.1667V11H9.33333C9.11232 11 8.90036 11.0878 8.74408 11.2441C8.5878 11.4004 8.5 11.6123 8.5 11.8334C8.5 12.0544 8.5878 12.2663 8.74408 12.4226C8.90036 12.5789 9.11232 12.6667 9.33333 12.6667H10.1667V21.8334C10.1667 22.4964 10.4301 23.1323 10.8989 23.6012C11.3677 24.07 12.0036 24.3334 12.6667 24.3334H19.3333C19.9964 24.3334 20.6323 24.07 21.1011 23.6012C21.5699 23.1323 21.8333 22.4964 21.8333 21.8334V12.6667H22.6667C22.8877 12.6667 23.0996 12.5789 23.2559 12.4226C23.4122 12.2663 23.5 12.0544 23.5 11.8334C23.5 11.6123 23.4122 11.4004 23.2559 11.2441C23.0996 11.0878 22.8877 11 22.6667 11ZM13.5 21.0001C13.5 21.2211 13.4122 21.433 13.2559 21.5893C13.0996 21.7456 12.8877 21.8334 12.6667 21.8334C12.4457 21.8334 12.2337 21.7456 12.0774 21.5893C11.9211 21.433 11.8333 21.2211 11.8333 21.0001V15.1667C11.8333 14.9457 11.9211 14.7337 12.0774 14.5774C12.2337 14.4212 12.4457 14.3334 12.6667 14.3334C12.8877 14.3334 13.0996 14.4212 13.2559 14.5774C13.4122 14.7337 13.5 14.9457 13.5 15.1667V21.0001ZM16.8333 21.0001C16.8333 21.2211 16.7455 21.433 16.5893 21.5893C16.433 21.7456 16.221 21.8334 16 21.8334C15.779 21.8334 15.567 21.7456 15.4107 21.5893C15.2545 21.433 15.1667 21.2211 15.1667 21.0001V15.1667C15.1667 14.9457 15.2545 14.7337 15.4107 14.5774C15.567 14.4212 15.779 14.3334 16 14.3334C16.221 14.3334 16.433 14.4212 16.5893 14.5774C16.7455 14.7337 16.8333 14.9457 16.8333 15.1667V21.0001ZM20.1667 21.0001C20.1667 21.2211 20.0789 21.433 19.9226 21.5893C19.7663 21.7456 19.5543 21.8334 19.3333 21.8334C19.1123 21.8334 18.9004 21.7456 18.7441 21.5893C18.5878 21.433 18.5 21.2211 18.5 21.0001V15.1667C18.5 14.9457 18.5878 14.7337 18.7441 14.5774C18.9004 14.4212 19.1123 14.3334 19.3333 14.3334C19.5543 14.3334 19.7663 14.4212 19.9226 14.5774C20.0789 14.7337 20.1667 14.9457 20.1667 15.1667V21.0001ZM12.6667 10.1667C12.6667 9.94568 12.7545 9.73372 12.9107 9.57744C13.067 9.42116 13.279 9.33336 13.5 9.33336H18.5C18.721 9.33336 18.933 9.42116 19.0893 9.57744C19.2455 9.73372 19.3333 9.94568 19.3333 10.1667V11H12.6667V10.1667Z" fill="#6D17CE"/></g><defs><clipPath id="clip_trash"><rect width="20" height="20" fill="white" transform="translate(6 6)"/></clipPath></defs></svg>
+          </button>
+          <!-- Mic icon (hidden during recording) -->
+          <button class="jds-action-btn" id="micBtn" onclick="onMicClick()">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 15a3 3 0 003-3V5a3 3 0 00-6 0v7a3 3 0 003 3zm6-5a1 1 0 00-1 1v1a5 5 0 11-10 0v-1a1 1 0 10-2 0v1a7 7 0 1014 0v-1a1 1 0 00-1-1zm-3 10H9a1 1 0 000 2h6a1 1 0 000-2z" fill="currentColor"/></svg>
+          </button>
+          <!-- Speak pill (normal mode) -->
+          <button class="jds-speak-btn" id="speakBtn" onclick="onSpeak()">
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+              <path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/>
+            </svg>
+            Speak
+          </button>
+          <!-- Circle send button (recording mode only) -->
+          <button class="jds-send-circle" id="sendCircleBtn">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </div><!-- /phone-screen -->
+</div><!-- /phone-frame -->
+
+<script>
+/* ===== FLOW DATA ===== */
+const FLOW_AMIT = {
+    act1: [
+        { t:'ai', text:'Hey Amit. Naya hai yahan? Chal koi baat nahi. Bata — koi goal hai jo latkaa hua hai? Savings, fitness, kuch bhi.' },
+        { t:'chips', opts:['Haan, paisa bachana hai','Gym consistent karna hai','Bas explore kar raha'] },
+        { t:'branch', map:{
+            'Haan, paisa bachana hai':[
+                { t:'ai', text:'Achha. Kitna bachana hai aur kab tak? Exact number bol.' },
+                { t:'chips', opts:['₹2 lakh is saal','₹50K 3 mahine mein','Number decide nahi kiya'] }
+            ],
+            'Gym consistent karna hai':[
+                { t:'ai', text:'Gym. Kitne din jaata hai abhi? Honestly bol.' },
+                { t:'chips', opts:['Kabhi kabhi, 1-2 din','Join kiya par jaata nahi','Roz jaata hoon bas results nahi aa rahe'] }
+            ],
+            'Bas explore kar raha':[
+                { t:'ai', text:'Explore karne mein koi burai nahi. Par agar genuinely kuch karna hai — bata. Warna Insta scroll karna better hai.' },
+                { t:'chips', opts:['Achha — ₹2 lakh bachana hai','Fitness fix karni hai','Career mein aage badhna hai'] }
+            ]
+        }},
+        { t:'ai', text:'Okay. So tu ₹2,00,000 save karna chahta hai iss saal. Iska matlab hai tujhe ₹16,700 per month save karna padega 12 months ke liye.' },
+        { t:'speak', text:'Haan barabar hai.' },
+        { t:'ai', text:'Thik hai. Tere ab JioPay ka data dekha. Dekh kahaan ja raha hai paisa.' },
+        { t:'card', card:'goalBreakdown', delay:1000 },
+        { t:'ai', text:'₹16,700 mahina bachana padega. Possible hai — Swiggy aur subscriptions mein ₹5K easily cut ho sakta hai. Baaki tu decide kar.', noAvatar:true, delay:1000 },
+        { t:'chips', opts:['Haan samajh aaya','Swiggy toh chahiye yaar','Aur kya cut kar sakta hoon?'] },
+        { t:'branch', map:{
+            'Haan samajh aaya':[{ t:'ai', text:'Achha. Ek kaam kar — apna goal record kar voice mein. Jab lag raha hoga ki nahi hoga — apni hi awaaz sun lena. Serious mein kaam karta hai.' }],
+            'Swiggy toh chahiye yaar':[{ t:'ai', text:'₹7,200 mahine ka Swiggy "chahiye" hai? Tiffin lagwa le ₹3K mein — woh baad mein discuss karenge. Pehle goal record kar.' }],
+            'Aur kya cut kar sakta hoon?':[{ t:'ai', text:'₹3,400 subscriptions. Kitne actually use karta hai? Detail baad mein. Pehle apna goal record kar — voice mein.' }]
+        }},
+        { t:'micRecord' },
+        { t:'ai', text:'Chal sahi hai. Mai ye save karke rakhta hu. Teresath har week check-in kiya karunga. Thik hai?' },
+        { t:'speak', text:'Chalega.' }
+    ],
+    act2:[
+        { t:'ai', text:'Bhai.. kaisa hai? Chal last week ka progress dekhte hai.' },
+        { t:'card', card:'weeklyStatus' },
+        { t:'ai', text:'Amit, aaj 8th week start ho gaya hai. Kal gym gaya tha?', noAvatar:true },
+        { t:'chips', opts:['Haan, gaya tha','Nahi, skip ho gaya'] },
+        { t:'branch', map:{
+            'Haan, gaya tha':[
+                { t:'ai', text:'Chalo accha hai. 13 din ho gaye. Consistent chal raha hai.', noAvatar:true },
+                { t:'ai', text:'Tere JioPay ka data dekha last week ka.', noAvatar:true },
+                { t:'card', card:'jioPayData' }
+            ],
+            'Nahi, skip ho gaya':[
+                { t:'ai', text:'Ek din chalta hai. Par pattern mat banne de.', noAvatar:true },
+                { t:'ai', text:'Tere JioPay ka data dekha last week ka.', noAvatar:true },
+                { t:'card', card:'jioPayData' }
+            ]
+        }},
+        { t:'ai', text:'Swiggy ₹1,850 — phir se. Last week bhi ₹1,800 tha. Roz ₹250+ bahar ka khaana. Mahine ka ₹5K+ sirf yahan ja raha hai.', noAvatar:true },
+        { t:'chips', opts:['Ghar pe banta nahi','Haan kam karunga','Kya karna chahiye?'] },
+        { t:'branch', map:{
+            'Ghar pe banta nahi':[
+                { t:'ai', text:'Tiffin lagwa le. ₹3,000 mahine ka lunch-dinner. Swiggy se ₹2,000 seedha bach jayega.' },
+                { t:'speak', text:'Sahi toh bol raha hai tu.' },
+                { t:'ai', text:'Tujhe chahiye toh kuch numbers share karu daily tiffin ke liye?' },
+                { t:'chips', opts:['Baad mai dekhta hu','Share kar','Khud bana lunga'] },
+                { t:'branch', map:{
+                    'Baad mai dekhta hu':[
+                        { t:'ai', text:'Chalega. 55% target tera done hai 6 mahine mein. January mein ₹8K save karta tha — ab ₹17K pe hai tu. Aur bhi savings badha sakta hai.' },
+                        { t:'ai', text:'Next week swiggy max ₹1,000/-.\nDone?', noAvatar:true },
+                        { t:'speak', text:'Done.' },
+                        { t:'ai', text:'Chal next week milta hu vapas. Aram kar ab.' },
+                        { t:'snackbar', text:'8 mahine baad', delay:1000, duration:2000 },
+                        { t:'ai', text:'Amit! tera goal dekha kya tune? I am proud of you buddy.' }
+                    ],
+                    'Share kar':[],
+                    'Khud bana lunga':[]
+                }}
+            ],
+            'Haan kam karunga':[{ t:'ai', text:'Yeh "kam karunga" teen hafte se sun raha hoon. Number de — next week max kitna Swiggy? Nahi toh same story repeat hogi.' }],
+            'Kya karna chahiye?':[{ t:'ai', text:'3 din tiffin ya ghar ka, 2 din Swiggy. Weekend chhoot de apne aap ko. Baaki din pack karke le ja. Simple.' }]
+        }},
+        { t:'card', card:'savingsStat', pct:75, amt:'₹1,50,000/-', gymStreak:'7 days', swiggy:'₹1,000' },
+        { t:'ai', text:'₹1.5 lakh. Yaad hai 10 mahine pehle kya bola tha? Sun — teri apni awaaz hai.', noAvatar:true },
+        { t:'voiceMsg', secs:8 },
+        { t:'speak', text:'Bohot accha lag Raha hai' },
+        { t:'ai', text:'Sahi hai!\nDecember tak hoga. Ab soch — next goal kya rakhna hai?' },
+        { t:'chips', opts:['Bike ka down payment','Emergency fund','Pehle yeh toh complete ho'] },
+        { t:'branch', map:{
+            'Bike ka down payment':[
+                { t:'ai', text:'Achha plan hai. Pehle ₹2L khatam kar, phir bike ka number set karenge.' },
+                { t:'ai', text:'Tera 10 mahine ka safar kafi accha raha hai.', noAvatar:true },
+                { t:'card', card:'journeyStat', pct:75 },
+                { t:'ai', text:'Well done.', noAvatar:true },
+                { t:'snackbar', text:'2 mahine baad', delay:1000, duration:2000 },
+                { t:'ai', text:'Congratulations Amit! Tera 12 months ka safar pura hua.' },
+                { t:'card', card:'congratsCard' },
+                { t:'card', card:'bulletPoints', items:['2 lakh saved','Swiggy control kiya. Hope karta hu ki ab tu tiffin lagva le','Gym consistent rakha','Shop bhi chali.'] },
+                { t:'speak', text:'Thank you yaar' },
+                { t:'ai', text:'Arey thank you kya usmai.\nChal ab tera next target start karte hai.' },
+                { t:'chips', opts:["Let's start",'Thoda break lete hai','Target change karna hai'] },
+                { t:'branch', map:{
+                    "Let's start":[]
+                }}
+            ],
+            'Emergency fund':[{ t:'ai', text:'Smart. 3 mahine ka kharcha side mein rakhna — ₹2L ke baad woh target.' }],
+            'Pehle yeh toh complete ho':[{ t:'ai', text:'Haan. ₹50K baaki hai — 2-3 mahine. Focus rakh.' }]
+        }}
+    ],
+    skip2:{ text:'4 mahine baad...', pct:75 },
+    act3:[
+        { t:'card', card:'savingsStat', pct:75, amt:'₹1,50,000/-', gymStreak:'7 days', swiggy:'₹1,000' },
+        { t:'ai', text:'₹1.5 lakh. Yaad hai 10 mahine pehle kya bola tha? Sun — teri apni awaaz hai.' },
+        { t:'voiceMsg', secs:8 },
+        { t:'ai', text:'Woh tu tha. ₹2 lakh door lagta tha tab. Ab ₹50K baaki hai. Numbers khud bol rahe hain.' },
+        { t:'card', card:'journey' },
+        { t:'ai', text:'December tak hoga. Ab soch — next goal kya rakhna hai?' },
+        { t:'chips', opts:['Bike ka down payment','Emergency fund','Pehle yeh toh complete ho'] },
+        { t:'branch', map:{
+            'Bike ka down payment':[{ t:'ai', text:'Achha plan hai. Pehle ₹2L khatam kar, phir bike ka number set karenge.' }],
+            'Emergency fund':[{ t:'ai', text:'Smart. 3 mahine ka kharcha side mein rakhna — ₹2L ke baad woh target.' }],
+            'Pehle yeh toh complete ho':[{ t:'ai', text:'Haan. ₹50K baaki hai — 2-3 mahine. Focus rakh.' }]
+        }},
+        { t:'card', card:'congratsCard' },
+        { t:'card', card:'bulletPoints', items:['2 lakh saved','Swiggy control kiya. Hope karta hu ki ab tu tiffin lagva le','Gym consistent rakha','Shop bhi chali.'] },
+        { t:'card', card:'summary' }
+    ]
+};
+
+/* ===== GLOBALS ===== */
+const chat = document.getElementById('chat');
+const avatarV = document.getElementById('avatarVideo');
+
+function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+function showSnackbar(text, duration=2000){
+    const s = document.getElementById('snackbar');
+    s.textContent = text;
+    s.classList.add('show');
+    setTimeout(()=>s.classList.remove('show'), duration);
+}
+function scroll(){ setTimeout(()=>{ chat.scrollTop = chat.scrollHeight; },60); }
+
+/* ===== TYPING ===== */
+function showTyp(){
+    const r = document.createElement('div');
+    r.className = 'typing-row'; r.id = 'typRow';
+    r.innerHTML = `<div class="typing-bubble"><video src="avatars/thinking.mp4" autoplay loop muted playsinline></video></div>`;
+    chat.appendChild(r); scroll();
+}
+function hideTyp(){ const t=document.getElementById('typRow'); if(t)t.remove(); }
+
+/* ===== MESSAGES ===== */
+async function addAI(text, delay=700, showAvatar=true){
+    showTyp();
+    await wait(delay);
+    hideTyp();
+    const d = document.createElement('div');
+    d.className = 'ai-msg-row';
+    d.innerHTML = `${showAvatar?`<div class="ai-avatar"><video src="avatars/idle.mp4" autoplay loop muted playsinline></video></div>`:''}
+        <div class="ai-msg-body"><p>${text}</p></div>`;
+    chat.appendChild(d); scroll();
+    return d;
+}
+
+function addVoiceMsg(secs){
+    const m = String(Math.floor(secs/60)).padStart(2,'0');
+    const s = String(secs%60).padStart(2,'0');
+    const timer = m+':'+s;
+    // waveform bar heights (simplified version of Figma waveform)
+    const heights = [4,4,4,4,4,4,4,4,4,4,4,4,4,4,16,25,32,41,32,25,16,
+                     10,14,22,18,20,14,22,26,32,38,20,14,4,4,20,32,41,32,
+                     20,14,22,18,20,14,10,16,25,32,25,16,10,4,4,4,4,4,4];
+    const d = document.createElement('div');
+    d.className = 'voice-msg-row';
+    let bars = heights.map(h=>`<div class="voice-waveform-bar" style="height:${h}px;"></div>`).join('');
+    d.innerHTML = `<div class="voice-msg-pill">
+      <button class="voice-play-btn">
+        <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+          <path d="M19.15 10.36l-10-7A2 2 0 006 5v14a2 2 0 003.15 1.64l10-7a2 2 0 000-3.28z" fill="#6D17CE"/>
+        </svg>
+      </button>
+      <div class="voice-waveform">${bars}</div>
+      <span class="voice-timer">${timer}</span>
+    </div>`;
+    chat.appendChild(d); scroll();
+}
+
+async function addUser(text){
+    if(!text) return;
+    const d = document.createElement('div');
+    d.className = 'user-msg-row';
+    d.innerHTML = `<div class="user-msg"><p>${text}</p></div>`;
+    chat.appendChild(d); scroll();
+}
+
+/* ===== CHIPS ===== */
+function addChips(opts){
+    return new Promise(res=>{
+        const row = document.createElement('div');
+        row.className = 'chips-wrap';
+        opts.forEach(o=>{
+            const b = document.createElement('button');
+            b.className = 'chip';
+            b.style.width = 'max-content';
+            b.textContent = o;
+            b.onclick = ()=>{
+                // lock width before selecting
+                b.style.width = b.offsetWidth+'px';
+                row.classList.add('off');
+                b.classList.add('sel');
+                addUser(o);
+                res(o);
+            };
+            row.appendChild(b);
+        });
+        chat.appendChild(row); scroll();
+    });
+}
+
+/* ===== CARD ===== */
+async function addCard(html, delay=700){
+    showTyp();
+    await wait(delay);
+    hideTyp();
+    const w = document.createElement('div');
+    w.innerHTML = html;
+    const c = w.firstElementChild;
+    chat.appendChild(c); scroll();
+    return c;
+}
+
+/* ===== CARD RENDERERS ===== */
+function renderCard(name, data){
+    switch(name){
+        case 'jioPayData':
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <span style="font-size:16px;font-weight:700;color:#0c0d10;line-height:1.3;">JioPay - Last week</span>
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                      <span style="font-size:14px;font-weight:400;color:#0c0d10;line-height:1.3;">Swiggy</span>
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;line-height:1.3;">₹1,850</span>
+                    </div>
+                    <div style="height:3px;border-radius:999px;background:#fbe5e3;overflow:hidden;"><div style="width:25%;height:100%;background:#f50031;border-radius:999px;"></div></div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                      <span style="font-size:14px;font-weight:400;color:#0c0d10;line-height:1.3;">Subscription</span>
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;line-height:1.3;">₹1,200</span>
+                    </div>
+                    <div style="height:3px;border-radius:999px;background:#ffe5d9;overflow:hidden;"><div style="width:25%;height:100%;background:#f06d0f;border-radius:999px;"></div></div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                      <span style="font-size:14px;font-weight:400;color:#0c0d10;line-height:1.3;">Recharge</span>
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;line-height:1.3;">₹750</span>
+                    </div>
+                    <div style="height:3px;border-radius:999px;background:#dfedfb;overflow:hidden;"><div style="width:25%;height:100%;background:#0d99ff;border-radius:999px;"></div></div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                      <span style="font-size:14px;font-weight:400;color:#0c0d10;line-height:1.3;">Other</span>
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;line-height:1.3;">₹300</span>
+                    </div>
+                    <div style="height:3px;border-radius:999px;background:#eeeeef;overflow:hidden;"><div style="width:25%;height:100%;background:#898c93;border-radius:999px;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        case 'weeklyStatus': {
+            const r=17, cx=20.5, cy=20.5, circ=2*Math.PI*r;
+            const pct=55, offset=circ*(1-pct/100);
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="background:#f8f8f9;border-radius:16px;padding:12px;">
+                <!-- Top: progress + savings -->
+                <div style="display:flex;align-items:center;gap:16px;">
+                  <div style="position:relative;width:41px;height:41px;flex-shrink:0;">
+                    <svg width="41" height="41" viewBox="0 0 41 41" style="transform:rotate(-90deg);">
+                      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="3.5"/>
+                      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#14B866" stroke-width="3.5"
+                        stroke-dasharray="${circ.toFixed(2)}" stroke-dashoffset="${offset.toFixed(2)}"
+                        stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;font-weight:500;color:#0c0d10;white-space:nowrap;">${pct}%</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <span style="font-size:12px;font-weight:400;color:#191b1e;opacity:0.8;line-height:1.3;">Savings till now</span>
+                    <span style="font-size:16px;font-weight:700;color:#0c0d10;line-height:1.3;">₹1,10,000/-</span>
+                  </div>
+                </div>
+                <!-- Divider -->
+                <div style="height:0.5px;background:rgba(0,0,0,0.12);margin:12px 0;"></div>
+                <!-- Rows -->
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;line-height:1.3;">Gym streak</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;line-height:1.3;">7 days</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;line-height:1.3;">Swiggy last week</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;line-height:1.3;">₹1,850</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        }
+        case 'goalBreakdown':
+            return `<div style="background:#fff;border-radius:16px;padding:16px 18px;font-family:'JioType',sans-serif;">
+              <div style="font-size:16px;font-weight:700;color:#0c0d10;margin-bottom:16px;">1 month ka breakdown</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <span style="font-size:14px;font-weight:400;color:#141414;">Swiggy</span>
+                    <span style="font-size:12px;font-weight:500;color:#141414;">₹7,200</span>
+                  </div>
+                  <div style="height:3px;border-radius:999px;background:#fbe5e3;overflow:hidden;"><div style="height:100%;width:55%;background:#f50031;border-radius:999px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <span style="font-size:14px;font-weight:400;color:#141414;">Subscription</span>
+                    <span style="font-size:12px;font-weight:500;color:#141414;">₹3,400</span>
+                  </div>
+                  <div style="height:3px;border-radius:999px;background:#ffe5d9;overflow:hidden;"><div style="height:100%;width:26%;background:#f06d0f;border-radius:999px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <span style="font-size:14px;font-weight:400;color:#141414;">Recharge</span>
+                    <span style="font-size:12px;font-weight:500;color:#141414;">₹1,800</span>
+                  </div>
+                  <div style="height:3px;border-radius:999px;background:#dfedfb;overflow:hidden;"><div style="height:100%;width:14%;background:#0d99ff;border-radius:999px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <span style="font-size:14px;font-weight:400;color:#141414;">Other</span>
+                    <span style="font-size:12px;font-weight:500;color:#141414;">₹4,200</span>
+                  </div>
+                  <div style="height:3px;border-radius:999px;background:#eeeeef;overflow:hidden;"><div style="height:100%;width:32%;background:#898c93;border-radius:999px;"></div></div>
+                </div>
+              </div>
+            </div>`;
+        case 'voiceRecord':
+            return `<div class="card voice"><div class="label">APNA GOAL RECORD KAR</div>
+            <div class="wave" id="recWave"></div>
+            <div class="rec-status" id="recStatus">Recording...</div></div>`;
+        case 'voicePlay':
+            return `<div class="card voice"><div class="label">10 MAHINE PEHLE KI AWAAZ</div>
+            <button class="play-btn" id="playBtn"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M19.15 10.36l-10-7A2 2 0 006 5v14a2 2 0 003.15 1.64l10-7a2 2 0 000-3.28z" fill="currentColor"/></svg></button>
+            <div class="wave" id="playWave"></div>
+            <div class="rec-status">"Bhaiya, is saal ₹2 lakh bachana hai..."</div></div>`;
+        case 'context':
+            return `<div class="card ctx"><div class="label">${data.label}</div><div class="body">${data.body}</div></div>`;
+        case 'spending':
+            return `<div class="card spend"><div class="label">JIOPAY · IS HAFTE</div>
+            <div class="srow"><span class="sdot" style="background:var(--error)"></span><span class="sname">Swiggy / Zomato</span><span class="sval">₹1,850</span></div>
+            <div class="sbar" style="width:75%;background:var(--error)"></div>
+            <div class="srow"><span class="sdot" style="background:var(--primary)"></span><span class="sname">JioMart</span><span class="sval">₹1,200</span></div>
+            <div class="sbar" style="width:48%;background:var(--primary)"></div>
+            <div class="srow"><span class="sdot" style="background:var(--secondary-50)"></span><span class="sname">Recharge + subs</span><span class="sval">₹750</span></div>
+            <div class="sbar" style="width:30%;background:var(--secondary-50)"></div>
+            <div class="srow"><span class="sdot" style="background:var(--sparkle-50)"></span><span class="sname">Petrol</span><span class="sval">₹300</span></div>
+            <div class="sbar" style="width:12%;background:var(--sparkle-50)"></div>
+            <div class="stotal"><span>Total</span><span class="tv">₹4,100</span></div></div>`;
+        case 'progress':
+            return `<div class="card prog"><div class="label">SAVINGS PROGRESS</div>
+            <div class="ring-wrap"><svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="${326.73*(1-(data?.pct||55)/100)}"/></svg>
+            <div class="ring-text"><div class="ring-amt">₹${data?.saved||'1,10,000'}</div><div class="ring-sub">${data?.pct||55}% done</div></div></div>
+            <div class="prog-info">Target: ₹${data?.target||'2,00,000'}</div></div>`;
+        case 'nudge':
+            return `<div class="card nudge"><div class="nicon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 22a2.98 2.98 0 002.82-2H9.18A2.98 2.98 0 0012 22zm7-7.36V10a7 7 0 10-14 0v4.64l-1.71 1.71A1 1 0 004 18h16a1 1 0 00.71-1.71L19 14.64z" fill="var(--warning)"/></svg></div>
+            <div class="ntext">${data?.text||''}</div></div>`;
+        case 'savingsStat': {
+            const pct = data?.pct || 75;
+            const circ = 106.81;
+            const off = circ * (1 - pct/100);
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="background:#f8f8f9;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;gap:16px;align-items:center;">
+                  <div style="position:relative;width:41px;height:41px;flex-shrink:0;">
+                    <svg viewBox="0 0 41 41" width="41" height="41">
+                      <circle cx="20.5" cy="20.5" r="17" fill="none" stroke="#e8e8e8" stroke-width="3.5"/>
+                      <circle cx="20.5" cy="20.5" r="17" fill="none" stroke="#14B866" stroke-width="3.5"
+                        stroke-dasharray="${circ}" stroke-dashoffset="${off}"
+                        stroke-linecap="round" transform="rotate(-90 20.5 20.5)"/>
+                    </svg>
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">${pct}%</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <span style="font-size:12px;font-weight:400;color:rgba(25,27,30,0.8);font-feature-settings:'liga' 0;">Savings till now</span>
+                    <span style="font-size:16px;font-weight:700;color:#0c0d10;font-feature-settings:'liga' 0;">${data?.amt||'₹1,50,000/-'}</span>
+                  </div>
+                </div>
+                <div style="height:0.5px;background:rgba(36,38,43,0.12);margin:12px 0;"></div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;font-feature-settings:'liga' 0;">Gym streak</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">${data?.gymStreak||'7 days'}</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;font-feature-settings:'liga' 0;">Swiggy last week</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">${data?.swiggy||'₹1,000'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        }
+        case 'journeyStat': {
+            const pct2 = data?.pct || 75;
+            const circ2 = 106.81;
+            const off2 = circ2 * (1 - pct2/100);
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="background:#f8f8f9;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:0;">
+                <div style="display:flex;gap:16px;align-items:center;">
+                  <div style="position:relative;width:41px;height:41px;flex-shrink:0;">
+                    <svg viewBox="0 0 41 41" width="41" height="41">
+                      <circle cx="20.5" cy="20.5" r="17" fill="none" stroke="#e8e8e8" stroke-width="3.5"/>
+                      <circle cx="20.5" cy="20.5" r="17" fill="none" stroke="#14B866" stroke-width="3.5"
+                        stroke-dasharray="${circ2}" stroke-dashoffset="${off2}"
+                        stroke-linecap="round" transform="rotate(-90 20.5 20.5)"/>
+                    </svg>
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                      <span style="font-size:12px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">${pct2}%</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <span style="font-size:12px;font-weight:400;color:rgba(25,27,30,0.8);font-feature-settings:'liga' 0;">10 months completed</span>
+                    <span style="font-size:16px;font-weight:700;color:#0c0d10;font-feature-settings:'liga' 0;">₹1,50,000/-</span>
+                  </div>
+                </div>
+                <div style="height:0.5px;background:rgba(36,38,43,0.12);margin:12px 0;"></div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;font-feature-settings:'liga' 0;">Savings</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">75% complete</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;font-feature-settings:'liga' 0;">Gym streak</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">Consistent</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:16px;font-weight:400;color:#0c0d10;font-feature-settings:'liga' 0;">Swiggy</span>
+                    <span style="font-size:16px;font-weight:500;color:#0c0d10;font-feature-settings:'liga' 0;">Controlled</span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        }
+        case 'milestone':
+            return `<div class="card mile"><div class="label">MILESTONE!</div>
+            <div class="mile-amt">${data?.amt||'₹1,50,000'}</div>
+            <div class="mile-sub">${data?.sub||'75% complete'}</div></div>`;
+        case 'journey':
+            return `<div class="card journey"><div class="label">TERA SAFAR</div>
+            <div class="jline">
+            <div class="jdot done"></div><div class="jseg"></div>
+            <div class="jdot done"></div><div class="jseg"></div>
+            <div class="jdot done"></div><div class="jseg"></div>
+            <div class="jdot done"></div><div class="jseg next"></div>
+            <div class="jdot next"></div></div>
+            <div class="jlabels"><span class="jdone">₹0</span><span class="jdone">₹50K</span><span class="jdone">₹1L</span><span class="jdone">₹1.5L</span><span>₹2L</span></div></div>`;
+        case 'congratsCard':
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="background:#fff;border:1px solid rgba(36,38,43,0.13);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:14px;align-items:center;">
+                <div style="width:56px;height:56px;overflow:hidden;flex-shrink:0;">
+                  <img src="https://www.figma.com/api/mcp/asset/15128c72-6c3f-4663-8967-721346cdca45" style="width:132%;height:132%;margin:-16%;display:block;" alt=""/>
+                </div>
+                <p style="font-size:20px;font-weight:700;color:#0c0d10;line-height:1.1;text-align:center;margin:0;font-feature-settings:'liga' 0;">12 mahine ka safar</p>
+                <p style="font-size:16px;font-weight:400;color:#0c0d10;line-height:1.3;text-align:center;margin:0;font-feature-settings:'liga' 0;">Sab ek saath manage kiya — aur koi notice kare na kare, numbers notice karte hain.</p>
+              </div>
+            </div>`;
+        case 'bulletPoints':
+            return `<div style="padding:8px 18px;font-family:'JioType',sans-serif;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                ${(data?.items||[]).map(item=>`
+                <div style="display:flex;gap:4px;align-items:flex-start;">
+                  <svg viewBox="0 0 20 20" width="20" height="20" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="10" fill="#25AB21"/><path d="M5.5 10.5l3 2.5 5.5-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                  <p style="font-size:16px;font-weight:400;color:#0c0d10;line-height:1.3;margin:0;font-feature-settings:'liga' 0;">${item}</p>
+                </div>`).join('')}
+              </div>
+            </div>`;
+        case 'summary':
+            return `<div class="card summary"><div class="label">AAJ KI BAAT</div>
+            <div class="stxt">Goal set kiya, reality check liya, milestone celebrate kiya. Full arc.</div>
+            <div class="stime"><svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 5a8.5 8.5 0 108.5 8.5A8.51 8.51 0 0012 5zm1 8a1 1 0 01-2 0V9a1 1 0 012 0v4z" fill="currentColor"/></svg>Next Monday, same time?</div></div>`;
+        case 'skip':
+            return `<div class="card skip"><div class="skip-icon">&raquo;</div>
+            <div class="skip-text">${data.text}</div>
+            <div class="skip-bar"><div class="skip-fill" style="width:0%" id="skipFill${data.id||0}"></div></div></div>`;
+        default: return '';
+    }
+}
+
+/* ===== VOICE RECORDING ANIMATION ===== */
+function animateRecording(el){
+    const wave = el.querySelector('#recWave');
+    const status = el.querySelector('#recStatus');
+    if(!wave) return Promise.resolve();
+    for(let i=0;i<15;i++){
+        const b = document.createElement('div');
+        b.className = 'bar';
+        b.style.height = (8+Math.random()*28)+'px';
+        b.style.animation = `waveAnim ${0.6+Math.random()*0.6}s ease-in-out infinite`;
+        b.style.animationDelay = (i*0.08)+'s';
+        wave.appendChild(b);
+    }
+    return wait(2500).then(()=>{
+        wave.querySelectorAll('.bar').forEach(b=>{ b.style.animation='none'; b.style.height='4px'; b.style.background='var(--sparkle-50)'; });
+        status.textContent='Saved!'; status.style.color='var(--sparkle-50)';
+    });
+}
+
+function animatePlayback(el){
+    const wave = el.querySelector('#playWave');
+    if(!wave) return Promise.resolve();
+    for(let i=0;i<15;i++){
+        const b=document.createElement('div'); b.className='bar'; b.style.height='4px'; wave.appendChild(b);
+    }
+    const btn=el.querySelector('#playBtn'); if(btn) btn.style.display='none';
+    wave.querySelectorAll('.bar').forEach((b,i)=>{
+        b.style.animation=`waveAnim ${0.5+Math.random()*0.5}s ease-in-out infinite`;
+        b.style.animationDelay=(i*0.07)+'s';
+    });
+    return wait(3000).then(()=>{
+        wave.querySelectorAll('.bar').forEach(b=>{ b.style.animation='none'; b.style.height='4px'; b.style.background='var(--sparkle-50)'; });
+    });
+}
+
+
+/* ===== FLOW ENGINE ===== */
+async function processStep(step){
+    if(step.t==='ai'){
+        await addAI(step.text, step.delay ?? 800, !step.noAvatar);
+    } else if(step.t==='speak'){
+        await waitForSpeak(step.text);
+    } else if(step.t==='micRecord'){
+        await waitForMicRecord();
+    } else if(step.t==='chips'){
+        return await addChips(step.opts);
+    } else if(step.t==='voiceMsg'){
+        await wait(600);
+        addVoiceMsg(step.secs ?? 8);
+    } else if(step.t==='snackbar'){
+        await wait(step.delay ?? 0);
+        showSnackbar(step.text, step.duration ?? 2000);
+        await wait(step.duration ?? 2000);
+    } else if(step.t==='card'){
+        const el = await addCard(renderCard(step.card, step), step.delay ?? 700);
+        if(step.card==='voiceRecord') await animateRecording(el);
+        if(step.card==='voicePlay') await animatePlayback(el);
+        if(step.card==='progress'){
+            await wait(100);
+            const fg=el.querySelector('.ring-fg');
+            if(fg) fg.style.strokeDashoffset=326.73*(1-(step.pct||55)/100);
+        }
+    }
+    return null;
+}
+
+async function runSequence(steps){
+    let i=0;
+    while(i<steps.length){
+        const step=steps[i];
+        if(step.t==='branch'){ i++; continue; }
+        const result = await processStep(step);
+        if(step.t==='chips' && result){
+            const next=steps[i+1];
+            if(next && next.t==='branch' && next.map[result]){
+                await runSequence(next.map[result]); i+=2; continue;
+            }
+        }
+        i++;
+    }
+}
+
+async function runTimeSkip(data, id){
+    const el = await addCard(renderCard('skip',{...data,id}),500);
+    await wait(300);
+    const fill=document.getElementById('skipFill'+id);
+    if(fill) fill.style.width=data.pct+'%';
+    await wait(1800);
+}
+
+async function runFlow(){
+    chat.querySelectorAll('.ai-msg-row,.user-msg-row,.chips-wrap,.card,.typing-row,.listening-row').forEach(e=>e.remove());
+    const F=FLOW_AMIT;
+    await wait(600);
+    await runSequence(F.act1);
+    await wait(1000);
+    showSnackbar('7 hafte baad', 2000);
+    await wait(2000);
+    await runSequence(F.act2);
+}
+
+
+/* ===== MIC RECORDING INTERACTION ===== */
+let _micResolve = null;
+let _recInterval = null;
+let _recSecs = 0;
+
+function onMicClick(){
+    if(!_micResolve) return; // only active when flow is waiting
+    // Show recording state
+    document.getElementById('chatTextRow').style.display = 'none';
+    document.getElementById('recWaveWrap').style.display = 'flex';
+    document.getElementById('micBtn').style.display = 'none';
+    document.getElementById('speakBtn').style.display = 'none';
+    document.getElementById('trashBtn').style.display = 'flex';
+    document.getElementById('sendCircleBtn').style.display = 'flex';
+    // Build bars
+    const barsEl = document.getElementById('recBarsEl');
+    barsEl.innerHTML = '';
+    for(let i=0;i<32;i++){
+        const b = document.createElement('div');
+        b.className = 'rec-bar';
+        b.style.animationDelay = (Math.random()*0.65).toFixed(2) + 's';
+        barsEl.appendChild(b);
+    }
+    // Start timer
+    _recSecs = 0;
+    const timerEl = document.getElementById('recTimerEl');
+    timerEl.textContent = '00:00';
+    _recInterval = setInterval(()=>{
+        _recSecs++;
+        const m = String(Math.floor(_recSecs/60)).padStart(2,'0');
+        const s = String(_recSecs%60).padStart(2,'0');
+        timerEl.textContent = m+':'+s;
+    }, 1000);
+    // Circle send btn confirms recording
+    document.getElementById('sendCircleBtn').onclick = ()=>{
+        const secs = _recSecs;
+        stopRecordingUI();
+        addVoiceMsg(secs || 8);
+        if(_micResolve){ const r=_micResolve; _micResolve=null; r(); }
+    };
+}
+
+function stopRecordingUI(){
+    clearInterval(_recInterval);
+    document.getElementById('recWaveWrap').style.display = 'none';
+    document.getElementById('chatTextRow').style.display = '';
+    document.getElementById('micBtn').style.display = 'flex';
+    document.getElementById('speakBtn').style.display = 'flex';
+    document.getElementById('trashBtn').style.display = 'none';
+    document.getElementById('sendCircleBtn').style.display = 'none';
+    document.getElementById('sendCircleBtn').onclick = null;
+}
+
+function cancelRecording(){
+    stopRecordingUI();
+    _micResolve = null;
+}
+
+function waitForMicRecord(){
+    return new Promise(res=>{ _micResolve = res; });
+}
+
+/* ===== SPEAK INTERACTION ===== */
+let _speakResolve = null;
+
+function onSpeak(){
+    if(_speakResolve){
+        const res = _speakResolve;
+        _speakResolve = null;
+        resetSpeakBtn();
+        res();
+    }
+}
+
+function waitForSpeak(text){
+    return new Promise(res=>{
+        // Step 1: wait for Speak click → show listening
+        _speakResolve = ()=>{
+            const btn = document.getElementById('speakBtn');
+            btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M6 6h12v12H6z" fill="currentColor"/></svg> Stop`;
+            const lr = document.createElement('div');
+            lr.className = 'listening-row'; lr.id = 'listenRow';
+            lr.innerHTML = `<div class="listening-avatar"><video src="avatars/listening.mp4" autoplay loop muted playsinline></video></div>
+                <span class="listening-text">Listening...</span>`;
+            chat.appendChild(lr); scroll();
+            // Step 2: wait for Stop click → show message
+            _speakResolve = ()=>{
+                const l = document.getElementById('listenRow'); if(l) l.remove();
+                resetSpeakBtn();
+                addUser(text);
+                res();
+            };
+        };
+    });
+}
+
+function resetSpeakBtn(){
+    const btn = document.getElementById('speakBtn');
+    btn.style.background = 'var(--primary)';
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2a1 1 0 00-1 1v18a1 1 0 002 0V3a1 1 0 00-1-1zM4 9a1 1 0 00-1 1v4a1 1 0 102 0v-4a1 1 0 00-1-1zm4-3a1 1 0 00-1 1v10a1 1 0 102 0V7a1 1 0 00-1-1zm12 3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm-4-3a1 1 0 00-1 1v10a1 1 0 002 0V7a1 1 0 00-1-1z" fill="currentColor"/></svg> Speak`;
+}
+
+/* ===== INIT ===== */
+setTimeout(runFlow, 800);
+</script>
+</body>
+</html>
